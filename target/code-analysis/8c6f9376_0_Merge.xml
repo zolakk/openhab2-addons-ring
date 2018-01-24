@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><sca xmlns:functx="http://www.functx.com">
+   <file name=".binding.ring\.classpath">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+
+   <file name=".binding.ring\build.properties">
+      <message tool="checkstyle" line="0" message="The jar file lib/json-simple-1.1.1.jar is present in the lib folder but is not present in the build properties" priority="1" rule="BuildPropertiesExternalLibrariesCheck" category="style"/>
+   </file>
+
+   <file name=".binding.ring\ESH-INF\i18n\alarmclock_xx_XX.properties">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+
+
+
+
+
+   <file name="org.openhab.binding.ring.handler.AbstractRingHandler.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.handler.AccountHandler.java">
+      <message tool="checkstyle" line="64" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.handler.ChimeHandler.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="50" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="65" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="66" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="71" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="72" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.handler.DoorbellHandler.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="55" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="70" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="71" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="76" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="77" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.ApiConstants.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.DataFactory.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="13" message="An author tag is missing" priority="1" rule="AuthorTagCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.Feature.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.ParamBuilder.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.Profile.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.errors.AuthenticationException.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.RestClient.java">
+      <message tool="pmd" line="130" message="&#xA;Avoid throwing raw exception types.&#xA;" priority="2" rule="AvoidThrowingRawExceptionTypes" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" category="strict exceptions"/>
+      <message tool="pmd" line="142" message="&#xA;Avoid printStackTrace(); use a logger call instead.&#xA;" priority="3" rule="AvoidPrintStackTrace" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" category="java logging"/>
+      <message tool="pmd" line="174" message="&#xA;Avoid throwing raw exception types.&#xA;" priority="2" rule="AvoidThrowingRawExceptionTypes" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" category="strict exceptions"/>
+      <message tool="pmd" line="179" message="&#xA;System.out.println is used&#xA;" priority="3" rule="SystemPrintln" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" category="java logging"/>
+      <message tool="pmd" line="199" message="&#xA;Avoid throwing raw exception types.&#xA;" priority="2" rule="AvoidThrowingRawExceptionTypes" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" category="strict exceptions"/>
+      <message tool="pmd" line="203" message="&#xA;System.out.println is used&#xA;" priority="3" rule="SystemPrintln" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" category="java logging"/>
+   <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+<file name="org.openhab.binding.ring.internal.RingHandlerFactory.java">
+      <message tool="checkstyle" line="48" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.RingBindingConstants.java">
+      <message tool="checkstyle" line="24" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="25" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="26" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="29" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="30" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="31" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="32" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="33" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="34" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="35" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="36" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="37" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="38" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="39" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="40" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="41" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="42" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+   </file>
+</sca>

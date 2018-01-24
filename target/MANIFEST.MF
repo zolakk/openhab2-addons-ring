@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.openhab.binding.ring;singleton:=true
+Export-Package: org.openhab.binding.ring,org.openhab.binding.ring.hand
+ ler
+Bundle-Name: AlarmClock Binding
+Bundle-Version: 2.2.0.201801241928
+Bundle-ClassPath: .,lib/json-simple-1.1.1.jar
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: openHAB
+Import-Package: org.openhab.binding.ring,org.openhab.binding.ring.hand
+ ler,org.eclipse.smarthome.config.core,org.eclipse.smarthome.config.di
+ scovery,org.eclipse.smarthome.core.library.types,org.eclipse.smarthom
+ e.core.thing,org.eclipse.smarthome.core.thing.binding,org.eclipse.sma
+ rthome.core.thing.binding.builder,org.eclipse.smarthome.core.thing.ty
+ pe,org.eclipse.smarthome.core.types,org.slf4j
+Service-Component: OSGI-INF/*.xml
+

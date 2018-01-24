@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="ring"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+        xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <!-- Account Thing Type -->
+    <thing-type id="account">
+        <label>Ring Account Binding Thing</label>
+        <description>Account with ring.com to access the devices.</description>
+
+        <channel-groups>
+            <channel-group id="control" typeId="controlGroup"/>
+            <channel-group id="event" typeId="eventGroup"/>
+        </channel-groups>
+        <config-description>
+            <parameter name="username" type="text" required="true">
+                <label>The Ring account's user name.</label>
+                <description>Enter the user name you used to subscribe to the Ring services.</description>
+            </parameter>
+            <parameter name="password" type="text" required="true">
+                <label>The Ring account's password.</label>
+                <description>Enter the password you used to subscribe to the Ring services.</description>
+            </parameter>
+            <parameter name="hardwareId" type="text">
+                <label>A unique hardware id.</label>
+                <description>Enter a hardware id that is unique for all your devices connected to Ring.</description>
+                <default>1234-5678-987654321</default>
+            </parameter>
+        </config-description>
+    </thing-type>
+
+</thing:thing-descriptions>

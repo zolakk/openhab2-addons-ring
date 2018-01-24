@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="ring"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+        xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    
+    <!-- Doorbell Thing Type -->
+    <thing-type id="doorbell">
+        <label>Video Doorbell Binding Thing</label>
+        <description>A Ring Video Doorbell device.</description>
+
+        <channel-groups>
+            <channel-group id="control" typeId="controlGroup" />
+        </channel-groups>
+         <config-description>
+            <parameter name="offOffset" type="decimal" >
+                <label>Offset in minutes to switch off</label>
+                <description>Offset in minutes to switch off</description>
+                <default>0</default>
+            </parameter>
+        </config-description>
+    </thing-type>
+    
+</thing:thing-descriptions>

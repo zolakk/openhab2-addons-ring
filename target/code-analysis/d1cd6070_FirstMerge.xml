@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><sca>
+
+
+
+
+   <file name=".binding.alarmclock\ESH-INF\i18n\alarmclock_xx_XX.properties">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+
+
+
+
+   <file name=".binding.alarmclock\README.md">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.alarmclock.AlarmClockBindingConstants.java">
+      <message tool="checkstyle" line="4" message="Line does not match expected header line of ' * All rights reserved. This program and the accompanying materials'." priority="3" rule="HeaderCheck" category="style"/>
+      <message tool="checkstyle" line="23" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="24" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="27" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="28" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="29" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="30" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="31" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="32" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="33" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="34" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="35" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="36" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="37" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="38" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.alarmclock.handler.AlarmClockHandler.java">
+      <message tool="checkstyle" line="4" message="Line does not match expected header line of ' * All rights reserved. This program and the accompanying materials'." priority="3" rule="HeaderCheck" category="style"/>
+      <message tool="checkstyle" line="211" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.alarmclock.handler.TimerHandler.java">
+      <message tool="checkstyle" line="4" message="Line does not match expected header line of ' * All rights reserved. This program and the accompanying materials'." priority="3" rule="HeaderCheck" category="style"/>
+      <message tool="checkstyle" line="134" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.alarmclock.internal.AlarmClockHandlerFactory.java">
+      <message tool="checkstyle" line="4" message="Line does not match expected header line of ' * All rights reserved. This program and the accompanying materials'." priority="3" rule="HeaderCheck" category="style"/>
+   </file>
+   <file name=".binding.alarmclock\pom.xml">
+      <message tool="checkstyle" line="10" message="Wrong /project/parent/version in the pom.xml file. The version should match the one in the MANIFEST.MF file." priority="1" rule="PomXmlCheck" category="style"/>
+   </file>
+</sca>

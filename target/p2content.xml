@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='1'>
+  <unit id='org.openhab.binding.ring' version='2.2.0.201801241928'>
+    <update id='org.openhab.binding.ring' range='[0.0.0,2.2.0.201801241928)' severity='0'/>
+    <properties size='5'>
+      <property name='org.eclipse.equinox.p2.name' value='AlarmClock Binding'/>
+      <property name='org.eclipse.equinox.p2.provider' value='openHAB'/>
+      <property name='maven-groupId' value='org.openhab.binding'/>
+      <property name='maven-artifactId' value='org.openhab.binding.ring'/>
+      <property name='maven-version' value='2.2.0-SNAPSHOT'/>
+    </properties>
+    <provides size='5'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.openhab.binding.ring' version='2.2.0.201801241928'/>
+      <provided namespace='osgi.bundle' name='org.openhab.binding.ring' version='2.2.0.201801241928'/>
+      <provided namespace='java.package' name='org.openhab.binding.ring' version='0.0.0'/>
+      <provided namespace='java.package' name='org.openhab.binding.ring.handler' version='0.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+    </provides>
+    <requires size='11'>
+      <required namespace='java.package' name='org.openhab.binding.ring' range='0.0.0'/>
+      <required namespace='java.package' name='org.openhab.binding.ring.handler' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.config.core' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.config.discovery' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.library.types' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.thing' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.thing.binding' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.thing.binding.builder' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.thing.type' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.types' range='0.0.0'/>
+      <required namespace='java.package' name='org.slf4j' range='0.0.0'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.openhab.binding.ring' version='2.2.0.201801241928'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.openhab.binding.ring;singleton:=true&#xA;Bundle-Version: 2.2.0.201801241928&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

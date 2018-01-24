@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="ring"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+        xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!-- This file contains channel specific information and describes how the different channel types should be rendered. Each 
+		channel is assigned a default priority configuration. For more info about priorities see ESH-INF/config/channelConfig.xml -->
+ 
+
+    <channel-group-type id="controlGroup">
+        <label>Control</label>
+        <description>Operational control and status information</description>
+        <channels>
+            <channel id="status" typeId="status"/>
+            <channel id="enabled" typeId="enabled"/>
+        </channels>
+    </channel-group-type>
+    <channel-group-type id="eventGroup">
+        <label>Events</label>
+        <description>Currently selected event information.</description>
+        <channels>
+            <channel id="url" typeId="url"/>
+            <channel id="createdAt" typeId="createdAt"/>
+            <channel id="kind" typeId="kind"/>
+        </channels>
+    </channel-group-type> 
+    
+    <!-- Channel Types -->
+    <channel-type id="url">
+        <item-type>String</item-type>
+        <label>URL to recorded video.</label>
+        <description>The URL to a recorded video (only when subscribed).</description>
+    </channel-type>
+    <channel-type id="createdAt">
+        <item-type>DateTime</item-type>
+        <label>When the event was created.</label>
+        <description>The date and time the event was created.</description>
+    </channel-type>
+    <channel-type id="kind">
+        <item-type>String</item-type>
+        <label>The kind of event.</label>
+        <description>The kind of event, usually 'motion' or 'ding'.</description>
+    </channel-type>
+    <channel-type id="status">
+        <item-type>Switch</item-type>
+        <label>Status</label>
+        <description>On or off</description>
+    </channel-type>
+    <channel-type id="enabled">
+        <item-type>Switch</item-type>
+        <label>Enabled (on=yes, off=no)</label>
+        <description>On or off</description>
+    </channel-type>
+
+</thing:thing-descriptions>
