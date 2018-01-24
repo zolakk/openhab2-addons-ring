@@ -88,6 +88,17 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                         updateState(channelUID, new StringType(lastEvents.get(eventIndex).getKind()));
                     }
                     break;
+                case CHANNEL_EVENT_DOORBOT_ID:
+                    if (eventListOk) {
+                        updateState(channelUID, new StringType(lastEvents.get(eventIndex).getDoorbot().getId()));
+                    }
+                    break;
+                case CHANNEL_EVENT_DOORBOT_DESCRIPTION:
+                    if (eventListOk) {
+                        updateState(channelUID,
+                                new StringType(lastEvents.get(eventIndex).getDoorbot().getDescription()));
+                    }
+                    break;
                 case CHANNEL_CONTROL_STATUS:
                     updateState(channelUID, status);
                     break;
@@ -190,6 +201,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_URL), RefreshType.REFRESH);
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_CREATED_AT), RefreshType.REFRESH);
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_KIND), RefreshType.REFRESH);
+                    handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_DOORBOT_ID), RefreshType.REFRESH);
+                    handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_DOORBOT_DESCRIPTION),
+                            RefreshType.REFRESH);
                 }
             } catch (ParseException | AuthenticationException ex) {
                 registry = null;

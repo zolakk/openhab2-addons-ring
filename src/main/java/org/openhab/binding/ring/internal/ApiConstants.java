@@ -46,6 +46,10 @@ public class ApiConstants {
     public static final String EVENT_RECORDING = "recording";
     public static final String EVENT_DOORBOT = "doorbot";
 
+    // JSON names for doorbot
+    public static final String DOORBOT_ID = "id";
+    public static final String DOORBOT_DESCRIPTION = "description";
+
     // JSON data names for ring devices
     public static final String DEVICES_DOORBOTS = "doorbots";
     public static final String DEVICES_AUTHORIZED_DOORBOTS = "authorized_doorbots";

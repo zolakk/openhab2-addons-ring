@@ -21,7 +21,11 @@ public class RingEvent {
      * The JSONObject contains the data retrieved from the Ring API,
      * or the data to send to the API.
      */
-    protected JSONObject jsonObject;
+    private JSONObject jsonObject;
+    /**
+     * The Doorbot linked to this event
+     */
+    private Doorbot doorbot;
 
     /**
      * The JSONObject is retrieved from the Ring API, example:
@@ -46,6 +50,7 @@ public class RingEvent {
      */
     public RingEvent(JSONObject jsonObject) {
         this.jsonObject = jsonObject;
+        this.doorbot = new Doorbot((JSONObject) jsonObject.get(ApiConstants.EVENT_DOORBOT));
     }
 
     /**
@@ -106,6 +111,15 @@ public class RingEvent {
     @SuppressWarnings("unchecked")
     public String getSnapshotUrl() {
         return jsonObject.getOrDefault(ApiConstants.EVENT_SNAPSHOT_URL, "").toString();
+    }
+
+    /**
+     * Get the doorbot linked to this event.
+     * 
+     * @return the doorbot.
+     */
+    public Doorbot getDoorbot() {
+        return doorbot;
     }
 
 }

@@ -32,6 +32,16 @@
         <label>URL to recorded video.</label>
         <description>The URL to a recorded video (only when subscribed).</description>
     </channel-type>
+    <channel-type id="doorbotId">
+        <item-type>String</item-type>
+        <label>The id of the doorbot.</label>
+        <description>The id of the doorbot that generated the currently selected event.</description>
+    </channel-type>
+    <channel-type id="doorbotDescription">
+        <item-type>String</item-type>
+        <label>The description of the doorbot.</label>
+        <description>The description of the doorbot that generated the currently selected event.</description>
+    </channel-type>
     <channel-type id="createdAt">
         <item-type>DateTime</item-type>
         <label>When the event was created.</label>
