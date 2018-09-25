@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: AlarmClock Binding
+Bundle-Name: Ring Doorbell Binding
 Bundle-SymbolicName: org.openhab.binding.ring;singleton:=true
 Bundle-Vendor: openHAB
-Bundle-Version: 2.2.0.qualifier
+Bundle-Version: 2.4.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .,
  lib/json-simple-1.1.1.jar
@@ -23,3 +23,5 @@ Service-Component: OSGI-INF/*.xml
 Export-Package: org.openhab.binding.ring,
  org.openhab.binding.ring.handler
 Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.jdt.annotation
+Automatic-Module-Name: org.openhab.binding.ring

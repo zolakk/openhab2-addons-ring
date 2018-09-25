@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2018-01-24T20:28:38.210">
-<file name="C:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RestClient.java">
-<violation beginline="135" endline="135" begincolumn="31" endcolumn="46" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.ring.internal" class="RestClient" method="postRequest" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
+<pmd version="5.8.1" timestamp="2018-09-20T16:30:56.721">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RestClient.java">
+<violation beginline="207" endline="207" begincolumn="31" endcolumn="46" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.ring.internal" class="RestClient" method="postRequest" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
 Avoid throwing raw exception types.
 </violation>
-<violation beginline="147" endline="147" begincolumn="13" endcolumn="32" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.ring.internal" class="RestClient" method="postRequest" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
-Avoid printStackTrace(); use a logger call instead.
-</violation>
-<violation beginline="209" endline="209" begincolumn="31" endcolumn="46" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.ring.internal" class="RestClient" method="getRequest" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
+<violation beginline="281" endline="281" begincolumn="31" endcolumn="46" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.ring.internal" class="RestClient" method="getRequest" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
 Avoid throwing raw exception types.
 </violation>
-<violation beginline="221" endline="221" begincolumn="13" endcolumn="32" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.ring.internal" class="RestClient" method="getRequest" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
-Avoid printStackTrace(); use a logger call instead.
+<violation beginline="372" endline="372" begincolumn="31" endcolumn="46" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.ring.internal" class="RestClient" method="get_oauth_token" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
+Avoid throwing raw exception types.
 </violation>
 </file>
-<file name="C:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RingDeviceRegistry.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RingDeviceRegistry.java">
 <violation beginline="59" endline="65" begincolumn="9" endcolumn="9" rule="NonThreadSafeSingleton" ruleset="Design" package="org.openhab.binding.ring.internal" class="RingDeviceRegistry" method="getInstance" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" priority="3">
 Singleton is not thread safe
 </violation>
 </file>
-<file name="C:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\discovery\RingDiscoveryService.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\discovery\RingDiscoveryService.java">
 <violation beginline="40" endline="45" begincolumn="9" endcolumn="9" rule="NonThreadSafeSingleton" ruleset="Design" package="org.openhab.binding.ring.internal.discovery" class="RingDiscoveryService" method="getSupportedTypes" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" priority="3">
 Singleton is not thread safe
 </violation>

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016 by the respective copyright holders.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,8 @@ package org.openhab.binding.ring.handler;
 
 import static org.openhab.binding.ring.RingBindingConstants.*;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import org.eclipse.smarthome.config.core.Configuration;
@@ -34,7 +36,7 @@ import org.openhab.binding.ring.internal.errors.AuthenticationException;
 import org.openhab.binding.ring.internal.errors.DuplicateIdException;
 
 /**
- * The {@link AlarmClockHandler} is responsible for handling commands, which are
+ * The {@link RingDoorbellHandler} is responsible for handling commands, which are
  * sent to one of the channels.
  *
  * @author Wim Vissers - Initial contribution
@@ -122,7 +124,10 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                         enabled = xcommand;
                         updateState(channelUID, enabled);
                         if (enabled.equals(OnOffType.ON)) {
-                            startAutomaticRefresh();
+                            Configuration config = getThing().getConfiguration();
+                            Integer refreshInterval = ((BigInteger) config.get("refreshInterval")).intValue();
+                            ;
+                            startAutomaticRefresh(refreshInterval);
                         } else {
                             stopAutomaticRefresh();
                         }
@@ -155,6 +160,8 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         String password = (String) config.get("password");
         String hardwareId = (String) config.get("hardwareId");
 
+        Integer refreshInterval = ((BigDecimal) config.get("refreshInterval")).intValueExact();
+
         try {
             restClient = new RestClient();
             userProfile = restClient.getAuthenticatedProfile(username, password, hardwareId);
@@ -173,7 +180,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         // as expected. E.g.
         // updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
         // "Can not access device as username and/or password are invalid");
-        startAutomaticRefresh();
+        startAutomaticRefresh(refreshInterval);
     }
 
     @Override
@@ -186,9 +193,33 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                 registry.addRingDevices(ringDevices.getRingDevices());
                 updateStatus(ThingStatus.ONLINE);
             } catch (AuthenticationException | ParseException e) {
-                registry = null;
-                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                        "Invalid response from ring.com.");
+                Configuration config = getThing().getConfiguration();
+                String username = (String) config.get("username");
+                String password = (String) config.get("password");
+                String hardwareId = (String) config.get("hardwareId");
+                try {
+                    restClient = new RestClient();
+                    userProfile = restClient.getAuthenticatedProfile(username, password, hardwareId);
+
+                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING,
+                            "Retrieving device list");
+                } catch (AuthenticationException ex) {
+                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials.");
+                } catch (ParseException e1) {
+                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                            "Invalid response from api.ring.com.");
+                } finally {
+                    try {
+                        RingDevices ringDevices = restClient.getRingDevices(userProfile, this);
+                        registry = RingDeviceRegistry.getInstance();
+                        registry.addRingDevices(ringDevices.getRingDevices());
+                        updateStatus(ThingStatus.ONLINE);
+                    } catch (DuplicateIdException | AuthenticationException | ParseException e11) {
+                        registry = null;
+                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                                "Invalid response from ring.com.");
+                    }
+                }
             } catch (DuplicateIdException ignored) {
                 updateStatus(ThingStatus.ONLINE);
             }

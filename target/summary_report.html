@@ -1,25 +1,1777 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Summary Report</title>
-		<style type="text/css">
-					body {margin-left: 3%; font-size:10pt;font-family:Arial;color:#000000 ; }
+<html xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+      <title>Analysis Report</title><style type="text/css">
+					body {margin-left: 3%; font-size:10pt;font-family:Arial;color:#000000 ; }					
 					table.details tr th {font-size:10pt;font-family:Arial;font-weight:bold;background:#AC58FA}
 					table.details tr {font-size:10pt;font-family:Arial;font-weight:normal;background:#BEa1Fa}
 					table tbody	tr.alternate {background:#BAF4A7;}
 					table tbody tr.dark {background:#F4F4A7;}
-		</style>
-	</head>
-	<body>
-		<h2>Summary report (2017-07-02 11:22:25.883)</h2>
-		<h3>Individual reports</h3>
-		<table width="90%" border="0" class="details">
-			<tr>
-				<th align="left">Bundle</th>
-			</tr>
-			<tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.alarmclock</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.alarmclock</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.alarmclock</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.alarmclock</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.alarmclock</a></td></tr><tr></tr>
-		</table>
-	</body>
+				</style></head>
+   <body>
+      <h2>Report
+         					 
+         					(2018-09-20-07:00;
+         					 16:31:06.75-07:00)
+         				
+      </h2>
+      <h3>Summary Messages</h3>
+      <table width="90%" border="0" class="details">
+         <tr>
+            <th align="left">category</th>
+            <th align="left">tool</th>
+            <th align="left">priority</th>
+            <th align="left">rule</th>
+            <th align="left">count</th>
+         </tr>
+         <tr>
+            <td colspan="5">design</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">3</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton">NonThreadSafeSingleton</a></td>
+            <td align="center">2</td>
+         </tr>
+         <tr>
+            <td colspan="5">empty code</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">3</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/empty.html#EmptyIfStmt">EmptyIfStmt</a></td>
+            <td align="center">1</td>
+         </tr>
+         <tr>
+            <td colspan="5">strict exceptions</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">2</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes">AvoidThrowingRawExceptionTypes</a></td>
+            <td align="center">3</td>
+         </tr>
+         <tr>
+            <td colspan="5">style</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td align="center">7</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>AnnotationDependencyCheck</td>
+            <td align="center">1</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td align="center">2</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td align="center">2</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td align="center">36</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>TodoCommentCheck</td>
+            <td align="center">6</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>MethodNameCheck</td>
+            <td align="center">2</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>StaticVariableNameCheck</td>
+            <td align="center">1</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>UnusedImportsCheck</td>
+            <td align="center">1</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>LocalVariableNameCheck</td>
+            <td align="center">2</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>MemberNameCheck</td>
+            <td align="center">1</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td align="center">1</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>ModifierOrderCheck</td>
+            <td align="center">10</td>
+         </tr>
+         <tr class="dark">
+            <td colspan="4"></td>
+            <td align="center">78</td>
+         </tr>
+      </table>
+      <p></p>
+      <h3>Summary Files</h3>
+      <table width="90%" border="0" class="details">
+         <tr>
+            <th align="left" width="90pt">class file</th>
+            <th align="center" width="90pt">high</th>
+            <th align="center" width="90pt">medium</th>
+            <th align="center" width="90pt">low</th>
+            <th align="center" width="90pt">total</th>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\.classpath" title=".binding.ring\.classpath">.binding.ring\.classpath</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\ESH-INF\binding\binding.xml" title=".binding.ring\ESH-INF\binding\binding.xml">.binding.ring\ESH-INF\binding\binding.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\ESH-INF\i18n\ringdoorbell_xx_XX.properties" title=".binding.ring\ESH-INF\i18n\ringdoorbell_xx_XX.properties">.binding.ring\ESH-INF\i18n\ringdoorbell_xx_XX.properties</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\ESH-INF\thing\account.xml" title=".binding.ring\ESH-INF\thing\account.xml">.binding.ring\ESH-INF\thing\account.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\ESH-INF\thing\channels.xml" title=".binding.ring\ESH-INF\thing\channels.xml">.binding.ring\ESH-INF\thing\channels.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\ESH-INF\thing\chime.xml" title=".binding.ring\ESH-INF\thing\chime.xml">.binding.ring\ESH-INF\thing\chime.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\ESH-INF\thing\doorbell.xml" title=".binding.ring\ESH-INF\thing\doorbell.xml">.binding.ring\ESH-INF\thing\doorbell.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\META-INF\MANIFEST.MF" title=".binding.ring\META-INF\MANIFEST.MF">.binding.ring\META-INF\MANIFEST.MF</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\OSGI-INF\RingDiscoveryService.xml" title=".binding.ring\OSGI-INF\RingDiscoveryService.xml">.binding.ring\OSGI-INF\RingDiscoveryService.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\OSGI-INF\RingHandlerFactory.xml" title=".binding.ring\OSGI-INF\RingHandlerFactory.xml">.binding.ring\OSGI-INF\RingHandlerFactory.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\about.html" title=".binding.ring\about.html">.binding.ring\about.html</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\build.properties" title=".binding.ring\build.properties">.binding.ring\build.properties</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.ring\pom.xml" title=".binding.ring\pom.xml">.binding.ring\pom.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.RingBindingConstants.java" title="org.openhab.binding.ring.RingBindingConstants.java">org.openhab.binding.ring.RingBindingConstants.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">10</div>
+            </td>
+            <td align="center">
+               <div class="p3">10</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.handler.AbstractRingHandler.java" title="org.openhab.binding.ring.handler.AbstractRingHandler.java">org.openhab.binding.ring.handler.AbstractRingHandler.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.handler.ChimeHandler.java" title="org.openhab.binding.ring.handler.ChimeHandler.java">org.openhab.binding.ring.handler.ChimeHandler.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">5</div>
+            </td>
+            <td align="center">
+               <div class="p3">6</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.handler.DoorbellHandler.java" title="org.openhab.binding.ring.handler.DoorbellHandler.java">org.openhab.binding.ring.handler.DoorbellHandler.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.handler.RingDeviceHandler.java" title="org.openhab.binding.ring.handler.RingDeviceHandler.java">org.openhab.binding.ring.handler.RingDeviceHandler.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.ApiConstants.java" title="org.openhab.binding.ring.internal.ApiConstants.java">org.openhab.binding.ring.internal.ApiConstants.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.RestClient.java" title="org.openhab.binding.ring.internal.RestClient.java">org.openhab.binding.ring.internal.RestClient.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">5</div>
+            </td>
+            <td align="center">
+               <div class="p3">8</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.RingAccount.java" title="org.openhab.binding.ring.internal.RingAccount.java">org.openhab.binding.ring.internal.RingAccount.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.RingDeviceRegistry.java" title="org.openhab.binding.ring.internal.RingDeviceRegistry.java">org.openhab.binding.ring.internal.RingDeviceRegistry.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.RingHandlerFactory.java" title="org.openhab.binding.ring.internal.RingHandlerFactory.java">org.openhab.binding.ring.internal.RingHandlerFactory.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.AbstractRingDevice.java" title="org.openhab.binding.ring.internal.data.AbstractRingDevice.java">org.openhab.binding.ring.internal.data.AbstractRingDevice.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.DataFactory.java" title="org.openhab.binding.ring.internal.data.DataFactory.java">org.openhab.binding.ring.internal.data.DataFactory.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.Doorbell.java" title="org.openhab.binding.ring.internal.data.Doorbell.java">org.openhab.binding.ring.internal.data.Doorbell.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.Doorbot.java" title="org.openhab.binding.ring.internal.data.Doorbot.java">org.openhab.binding.ring.internal.data.Doorbot.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.Feature.java" title="org.openhab.binding.ring.internal.data.Feature.java">org.openhab.binding.ring.internal.data.Feature.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.ParamBuilder.java" title="org.openhab.binding.ring.internal.data.ParamBuilder.java">org.openhab.binding.ring.internal.data.ParamBuilder.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.Profile.java" title="org.openhab.binding.ring.internal.data.Profile.java">org.openhab.binding.ring.internal.data.Profile.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.RingDevice.java" title="org.openhab.binding.ring.internal.data.RingDevice.java">org.openhab.binding.ring.internal.data.RingDevice.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.RingDevices.java" title="org.openhab.binding.ring.internal.data.RingDevices.java">org.openhab.binding.ring.internal.data.RingDevices.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.data.RingEvent.java" title="org.openhab.binding.ring.internal.data.RingEvent.java">org.openhab.binding.ring.internal.data.RingEvent.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.discovery.RingDiscoveryService.java" title="org.openhab.binding.ring.internal.discovery.RingDiscoveryService.java">org.openhab.binding.ring.internal.discovery.RingDiscoveryService.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+            <td align="center">
+               <div class="p3">5</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.errors.AuthenticationException.java" title="org.openhab.binding.ring.internal.errors.AuthenticationException.java">org.openhab.binding.ring.internal.errors.AuthenticationException.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.errors.DeviceNotFoundException.java" title="org.openhab.binding.ring.internal.errors.DeviceNotFoundException.java">org.openhab.binding.ring.internal.errors.DeviceNotFoundException.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.errors.DuplicateIdException.java" title="org.openhab.binding.ring.internal.errors.DuplicateIdException.java">org.openhab.binding.ring.internal.errors.DuplicateIdException.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.ring.internal.errors.IllegalDeviceClassException.java" title="org.openhab.binding.ring.internal.errors.IllegalDeviceClassException.java">org.openhab.binding.ring.internal.errors.IllegalDeviceClassException.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="dark">
+            <td></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">15</div>
+            </td>
+            <td align="center">
+               <div class="p3">63</div>
+            </td>
+            <td align="center">
+               <div class="p3">78</div>
+            </td>
+         </tr>
+      </table>
+      <p></p>
+      <h3>Details by Class</h3>
+      <table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\.classpath">.binding.ring\.classpath</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\ESH-INF\binding\binding.xml">.binding.ring\ESH-INF\binding\binding.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>3</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\ESH-INF\i18n\ringdoorbell_xx_XX.properties">.binding.ring\ESH-INF\i18n\ringdoorbell_xx_XX.properties</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\ESH-INF\thing\account.xml">.binding.ring\ESH-INF\thing\account.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>3</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\ESH-INF\thing\channels.xml">.binding.ring\ESH-INF\thing\channels.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>3</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\ESH-INF\thing\chime.xml">.binding.ring\ESH-INF\thing\chime.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>3</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\ESH-INF\thing\doorbell.xml">.binding.ring\ESH-INF\thing\doorbell.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>3</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\META-INF\MANIFEST.MF">.binding.ring\META-INF\MANIFEST.MF</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>10</td>
+            <td>style</td>
+            <td>AnnotationDependencyCheck</td>
+            <td>Every bundle should have optional Import-Package dependency to org.eclipse.jdt.annotation.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\OSGI-INF\RingDiscoveryService.xml">.binding.ring\OSGI-INF\RingDiscoveryService.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>4</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\OSGI-INF\RingHandlerFactory.xml">.binding.ring\OSGI-INF\RingHandlerFactory.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>4</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\about.html">.binding.ring\about.html</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\build.properties">.binding.ring\build.properties</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.ring\pom.xml">.binding.ring\pom.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.RingBindingConstants.java">org.openhab.binding.ring.RingBindingConstants.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>24</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>25</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>26</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>29</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>30</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>31</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>32</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>33</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>34</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>35</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.handler.AbstractRingHandler.java">org.openhab.binding.ring.handler.AbstractRingHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>79</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.handler.ChimeHandler.java">org.openhab.binding.ring.handler.ChimeHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>20</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>33</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>48</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>54</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>60</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.handler.DoorbellHandler.java">org.openhab.binding.ring.handler.DoorbellHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>24</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>71</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>77</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.handler.RingDeviceHandler.java">org.openhab.binding.ring.handler.RingDeviceHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.ApiConstants.java">org.openhab.binding.ring.internal.ApiConstants.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.RestClient.java">org.openhab.binding.ring.internal.RestClient.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>207</td>
+            <td>strict exceptions</td>
+            <td>AvoidThrowingRawExceptionTypes</td>
+            <td>
+               Avoid throwing raw exception types.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>281</td>
+            <td>strict exceptions</td>
+            <td>AvoidThrowingRawExceptionTypes</td>
+            <td>
+               Avoid throwing raw exception types.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>372</td>
+            <td>strict exceptions</td>
+            <td>AvoidThrowingRawExceptionTypes</td>
+            <td>
+               Avoid throwing raw exception types.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>22</td>
+            <td>style</td>
+            <td>UnusedImportsCheck</td>
+            <td>Unused import - java.util.Base64.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>317</td>
+            <td>style</td>
+            <td>MethodNameCheck</td>
+            <td>Name 'get_oauth_token' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>319</td>
+            <td>style</td>
+            <td>LocalVariableNameCheck</td>
+            <td>Name 'oauth_token' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>322</td>
+            <td>style</td>
+            <td>LocalVariableNameCheck</td>
+            <td>Name 'oauth_data' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.RingAccount.java">org.openhab.binding.ring.internal.RingAccount.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.RingDeviceRegistry.java">org.openhab.binding.ring.internal.RingDeviceRegistry.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>59</td>
+            <td>design</td>
+            <td>NonThreadSafeSingleton</td>
+            <td>
+               Singleton is not thread safe
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.RingHandlerFactory.java">org.openhab.binding.ring.internal.RingHandlerFactory.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>32</td>
+            <td>style</td>
+            <td>MemberNameCheck</td>
+            <td>Name 'SUPPORTED_THING_TYPES_UIDS' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>48</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.AbstractRingDevice.java">org.openhab.binding.ring.internal.data.AbstractRingDevice.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.DataFactory.java">org.openhab.binding.ring.internal.data.DataFactory.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>17</td>
+            <td>style</td>
+            <td>MethodNameCheck</td>
+            <td>Name 'getOAUTH_DATA' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.Doorbell.java">org.openhab.binding.ring.internal.data.Doorbell.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.Doorbot.java">org.openhab.binding.ring.internal.data.Doorbot.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.Feature.java">org.openhab.binding.ring.internal.data.Feature.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.ParamBuilder.java">org.openhab.binding.ring.internal.data.ParamBuilder.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.Profile.java">org.openhab.binding.ring.internal.data.Profile.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.RingDevice.java">org.openhab.binding.ring.internal.data.RingDevice.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.RingDevices.java">org.openhab.binding.ring.internal.data.RingDevices.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.data.RingEvent.java">org.openhab.binding.ring.internal.data.RingEvent.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.discovery.RingDiscoveryService.java">org.openhab.binding.ring.internal.discovery.RingDiscoveryService.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>115</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>36</td>
+            <td>style</td>
+            <td>StaticVariableNameCheck</td>
+            <td>Name 'SUPPORTED_THING_TYPES_UIDS' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>40</td>
+            <td>design</td>
+            <td>NonThreadSafeSingleton</td>
+            <td>
+               Singleton is not thread safe
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>136</td>
+            <td>empty code</td>
+            <td>EmptyIfStmt</td>
+            <td>
+               Avoid empty if statements
+               
+            </td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.errors.AuthenticationException.java">org.openhab.binding.ring.internal.errors.AuthenticationException.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.errors.DeviceNotFoundException.java">org.openhab.binding.ring.internal.errors.DeviceNotFoundException.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.errors.DuplicateIdException.java">org.openhab.binding.ring.internal.errors.DuplicateIdException.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.ring.internal.errors.IllegalDeviceClassException.java">org.openhab.binding.ring.internal.errors.IllegalDeviceClassException.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br></body>
 </html>

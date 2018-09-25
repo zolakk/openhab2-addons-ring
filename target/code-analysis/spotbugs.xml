@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BugCollection version='3.1.2' threshold='high' effort='min'><Error></Error><Project><SrcDir>C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java</SrcDir><SrcDir>C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\target\generated-sources\annotations</SrcDir><SrcDir>C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\test\java</SrcDir></Project></BugCollection>

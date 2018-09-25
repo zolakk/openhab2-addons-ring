@@ -14,6 +14,20 @@ import org.openhab.binding.ring.internal.ApiConstants;
  * @author Wim Vissers - Initial contribution
  */
 public class DataFactory {
+    public static String getOAUTH_DATA(String username, String password) {
+        /*
+         * Map<String, String> map = new HashMap<String, String>();
+         * 
+         * paramBuilder pb = new ParamBuilder(false);
+         * map.put("client_id", "ring_official_android");
+         * map.put("grant_type", "password");
+         * map.put("scope", "client");
+         * map.put("username", username);
+         * map.put("password", password);
+         * return pb.toString();
+         */
+        return "";
+    }
 
     /**
      * Get GET parameters for the session API resource.
@@ -66,7 +80,7 @@ public class DataFactory {
     /**
      * Construct the url to retrieve the recorded video.
      *
-     * @param profile the user profile for the authentication token.
+     * @param profile   the user profile for the authentication token.
      * @param ringEvent the ring event for the id.
      * @return a url to the recorded video.
      */

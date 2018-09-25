@@ -75,18 +75,22 @@ import org.openhab.binding.ring.internal.ApiConstants;
  * @author Wim Vissers - Initial contribution
  */
 public class Profile {
-
+    // ADD REFRESH TOKEN
     private JSONObject jsonProfile;
     private JSONObject jsonFeatures;
+    private String refreshToken;
 
     /**
      * Create Profile instance from JSON String.
      *
-     * @param jsonProfile the JSON profile retrieved from the Ring API.
+     * @param jsonProfile  the JSON profile retrieved from the Ring API.
+     * @param refreshToken needed for the refresh token so we aren't logging in every time.
+     *                         Needed as a separate parameter because it's not part of the jsonProfile object.
      */
-    public Profile(JSONObject jsonProfile) {
+    public Profile(JSONObject jsonProfile, String refreshToken) {
         this.jsonProfile = jsonProfile;
         this.jsonFeatures = (JSONObject) jsonProfile.get("features");
+        this.refreshToken = refreshToken;
     }
 
     /**
@@ -97,6 +101,15 @@ public class Profile {
     @SuppressWarnings("unchecked")
     public String getId() {
         return jsonProfile.getOrDefault(ApiConstants.PROFILE_ID, "?").toString();
+    }
+
+    /**
+     * The profile id.
+     *
+     * @return the id.
+     */
+    public String getRefreshToken() {
+        return refreshToken;
     }
 
     /**

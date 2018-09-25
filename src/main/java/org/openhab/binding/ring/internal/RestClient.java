@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2017 by the respective copyright holders.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,18 +9,24 @@
 package org.openhab.binding.ring.internal;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.Base64;
+import java.util.HashMap;
+//import java.util.Base64;
 import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -42,6 +48,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author Wim Vissers - Initial contribution
+ * @author Pete Mietlowski - Updated authentication routines
  */
 public class RestClient {
 
@@ -72,18 +79,20 @@ public class RestClient {
      * @param unamePassword username:password if applicable, otherwise null
      * @return the servers response
      * @throws AuthenticationException
+     *
      */
-    private String postRequest(String resourceUrl, String data, String unamePassword) throws AuthenticationException {
+
+    private String postRequest(String resourceUrl, String data, String oauth_token) throws AuthenticationException {
         String result = null;
         try {
             byte[] postData = data.getBytes(StandardCharsets.UTF_8);
-            int postDataLength = postData.length;
             StringBuilder output = new StringBuilder();
             URL url = new URL(resourceUrl);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.setUseCaches(false);
-            conn.setRequestProperty("User-Agent", "openHAB Ring binding");
+            conn.setRequestProperty("User-Agent", "Dalvik/1.6.0 (Linux; Android 4.4.4; Build/KTU84Q)");
+            conn.setRequestProperty("Authorization", "Bearer " + oauth_token);
             conn.setHostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -109,15 +118,9 @@ public class RestClient {
             conn.setSSLSocketFactory(context.getSocketFactory());
             conn.setRequestMethod(METHOD_POST);
 
-            // Add basic authentication if requested
-            if (unamePassword != null) {
-                String encoding = Base64.getEncoder().encodeToString(unamePassword.getBytes());
-                conn.setRequestProperty("Authorization", "Basic " + encoding);
-            }
-
-            conn.setRequestProperty("cache-control", "no-cache");
-            // conn.setRequestProperty("Content-type", "application/json");
-            conn.setRequestProperty("Content-length", "" + postDataLength);
+            // conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded; charset: UTF-8");
+            conn.setRequestProperty("X-API-LANG", "en");
+            conn.setRequestProperty("Content-length", "gzip, deflate");
             conn.setDoOutput(true);
             conn.setConnectTimeout(CONNECTION_TIMEOUT);
 
@@ -144,7 +147,8 @@ public class RestClient {
             result = output.toString();
             logger.debug("RestApi response: {}.", result);
         } catch (IOException | KeyManagementException | NoSuchAlgorithmException ex) {
-            ex.printStackTrace();
+            logger.error("ERROR!", ex);
+            // ex.printStackTrace();
         }
         return result;
     }
@@ -165,7 +169,7 @@ public class RestClient {
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.setUseCaches(false);
-            conn.setRequestProperty("User-Agent", "openHAB Ring binding");
+            conn.setRequestProperty("User-Agent", "Dalvik/1.6.0 (Linux; Android 4.4.4; Build/KTU84Q)");
             conn.setHostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -203,11 +207,13 @@ public class RestClient {
                     break;
                 case 400:
                 case 401:
+                    // break;
                     throw new AuthenticationException("Invalid request.");
                 default:
                     logger.error("Unhandled http response code: {}", conn.getResponseCode());
                     throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
             }
+
             logger.debug("RestApi resource: {}, response code: {}.", resourceUrl, conn.getResponseCode());
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
             String line;
@@ -218,7 +224,8 @@ public class RestClient {
             result = output.toString();
             logger.debug("RestApi response: {}.", result);
         } catch (IOException | KeyManagementException | NoSuchAlgorithmException ex) {
-            ex.printStackTrace();
+            logger.error("ERROR!", ex);
+            // ex.printStackTrace();
         }
         return result;
     }
@@ -226,8 +233,8 @@ public class RestClient {
     /**
      * Get a (new) authenticated profile.
      *
-     * @param username the username of the Ring account.
-     * @param password the password for the Ring account.
+     * @param username   the username of the Ring account.
+     * @param password   the password for the Ring account.
      * @param hardwareId a hardware ID (must be unique for every piece of hardware used).
      * @return a Profile instance with available data stored in it.
      * @throws AuthenticationException
@@ -235,10 +242,202 @@ public class RestClient {
      */
     public Profile getAuthenticatedProfile(String username, String password, String hardwareId)
             throws AuthenticationException, ParseException {
+        JSONObject oauthToken = get_oauth_token(username, password);
         String jsonResult = postRequest(ApiConstants.URL_SESSION, DataFactory.getSessionParams(hardwareId),
-                username + ":" + password);
+                oauthToken.get("access_token").toString());
         JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
-        return new Profile((JSONObject) obj.get("profile"));
+        return new Profile((JSONObject) obj.get("profile"), oauthToken.get("refresh_token").toString());
+    }
+
+    /**
+     * Get a (new) oAuth token.
+     *
+     * @param username the username of the Ring account.
+     * @param password the password for the Ring account.
+     * @return a JSONObject with the available data stored in it (access_token, refresh_token)
+     * @throws AuthenticationException
+     * @throws ParseException
+     */
+    private JSONObject get_oauth_token(String username, String password)
+            throws AuthenticationException, ParseException {
+
+        String result = null;
+        JSONObject oauth_token = null;
+        String resourceUrl = ApiConstants.API_OAUTH_ENDPOINT;
+        try {
+            Map<String, String> map = new HashMap<String, String>();
+
+            map.put("client_id", "ring_official_android");
+            map.put("grant_type", "password");
+            map.put("scope", "client");
+            map.put("username", username);
+            map.put("password", password);
+
+            URL url = new URL(resourceUrl);
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.setDoInput(true);
+            conn.setUseCaches(false);
+            conn.setRequestProperty("User-Agent", "Dalvik/1.6.0 (Linux; Android 4.4.4; Build/KTU84Q)");
+            conn.setHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            // SSL setting
+            SSLContext context = SSLContext.getInstance("TLS");
+            context.init(null, new TrustManager[] { new javax.net.ssl.X509TrustManager() {
+                @Override
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                @Override
+                public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                }
+
+                @Override
+                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                }
+            } }, null);
+            conn.setSSLSocketFactory(context.getSocketFactory());
+            conn.setRequestMethod(METHOD_POST);
+
+            conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded; charset: UTF-8");
+            conn.setDoOutput(true);
+            conn.setConnectTimeout(CONNECTION_TIMEOUT);
+
+            StringJoiner sj = new StringJoiner("&");
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8"));
+            }
+            byte[] out = sj.toString().getBytes(StandardCharsets.UTF_8);
+            int length = out.length;
+
+            conn.setFixedLengthStreamingMode(length);
+            conn.connect();
+            OutputStream os = conn.getOutputStream();
+            os.write(out);
+
+            switch (conn.getResponseCode()) {
+                case 200:
+                case 201:
+                    break;
+                case 400:
+                case 401:
+                    throw new AuthenticationException("Invalid username or password.");
+                default:
+                    logger.error("Unhandled http response code: {}", conn.getResponseCode());
+                    throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+            }
+            logger.debug("RestApi resource: {}, response code: {}.", resourceUrl, conn.getResponseCode());
+
+            result = readFullyAsString(conn.getInputStream(), "UTF-8");
+            conn.disconnect();
+
+            // JSONObject obj = (JSONObject) new JSONParser().parse(result);
+            // oauth_token = obj.get("access_token").toString();
+            oauth_token = (JSONObject) new JSONParser().parse(result);
+            logger.debug("RestApi response: {}.", result);
+        } catch (IOException | KeyManagementException | NoSuchAlgorithmException ex) {
+            logger.error("ERROR!", ex);
+            // ex.printStackTrace();
+        }
+        return oauth_token;
+    }
+
+    public String readFullyAsString(InputStream inputStream, String encoding) throws IOException {
+        return readFully(inputStream).toString(encoding);
+    }
+
+    private ByteArrayOutputStream readFully(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length = 0;
+        while ((length = inputStream.read(buffer)) != -1) {
+            baos.write(buffer, 0, length);
+        }
+        return baos;
+    }
+
+    public Boolean refresh_session(String refreshToken) {
+
+        String result = null;
+        String resourceUrl = ApiConstants.API_OAUTH_ENDPOINT;
+        try {
+            Map<String, String> map = new HashMap<String, String>();
+
+            map.put("grant_type", "refresh_token");
+            map.put("refresh_token", refreshToken);
+
+            URL url = new URL(resourceUrl);
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.setDoInput(true);
+            conn.setUseCaches(false);
+            conn.setRequestProperty("User-Agent", "Dalvik/1.6.0 (Linux; Android 4.4.4; Build/KTU84Q)");
+            conn.setHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            // SSL setting
+            SSLContext context = SSLContext.getInstance("TLS");
+            context.init(null, new TrustManager[] { new javax.net.ssl.X509TrustManager() {
+                @Override
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                @Override
+                public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                }
+
+                @Override
+                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                }
+            } }, null);
+            conn.setSSLSocketFactory(context.getSocketFactory());
+            conn.setRequestMethod(METHOD_POST);
+
+            conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded; charset: UTF-8");
+            conn.setDoOutput(true);
+            conn.setConnectTimeout(CONNECTION_TIMEOUT);
+
+            StringJoiner sj = new StringJoiner("&");
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8"));
+            }
+            byte[] out = sj.toString().getBytes(StandardCharsets.UTF_8);
+            int length = out.length;
+
+            conn.setFixedLengthStreamingMode(length);
+            conn.connect();
+            OutputStream os = conn.getOutputStream();
+            os.write(out);
+
+            switch (conn.getResponseCode()) {
+                case 200:
+                case 201:
+                    break;
+                case 400:
+                case 401:
+                    return false;
+                default:
+                    logger.error("Unhandled http response code: {}", conn.getResponseCode());
+                    return false;
+            }
+            logger.debug("RestApi resource: {}, response code: {}.", resourceUrl, conn.getResponseCode());
+
+            result = readFullyAsString(conn.getInputStream(), "UTF-8");
+            conn.disconnect();
+
+            logger.debug("RestApi response: {}.", result);
+        } catch (IOException | KeyManagementException | NoSuchAlgorithmException ex) {
+            logger.error("ERROR!", ex);
+            // ex.printStackTrace();
+        }
+        return true;
     }
 
     /**
@@ -247,7 +446,7 @@ public class RestClient {
      * @param profile the Profile previously retrieved when authenticating.
      * @return the RingDevices instance filled with all available data.
      * @throws AuthenticationException when request is invalid.
-     * @throws ParseException when response is invalid JSON.
+     * @throws ParseException          when response is invalid JSON.
      */
     public RingDevices getRingDevices(Profile profile, RingAccount ringAccount)
             throws ParseException, AuthenticationException {
@@ -260,7 +459,7 @@ public class RestClient {
      * Get a List with the last recorded events, newest on top.
      *
      * @param profile the Profile previously retrieved when authenticating.
-     * @param limit the maximum number of events.
+     * @param limit   the maximum number of events.
      * @return
      * @throws AuthenticationException
      * @throws ParseException

@@ -1,119 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.1">
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\.classpath">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\.classpath">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\about.html">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\build.properties">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\binding\binding.xml">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\i18n\alarmclock_xx_XX.properties">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\about.html">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\thing\account.xml">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\thing\channels.xml">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\thing\chime.xml">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\thing\doorbell.xml">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\META-INF\MANIFEST.MF">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\OSGI-INF\RingDiscoveryService.xml">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\OSGI-INF\RingHandlerFactory.xml">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\pom.xml">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\README.md">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\AbstractRingHandler.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\build.properties">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\AccountHandler.java">
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\ChimeHandler.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\binding\binding.xml">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="3" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\i18n\ringdoorbell_xx_XX.properties">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\thing\account.xml">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="3" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\thing\channels.xml">
+<error line="3" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\thing\chime.xml">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="3" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\ESH-INF\thing\doorbell.xml">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="3" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\META-INF\MANIFEST.MF">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="10" severity="warning" message="Every bundle should have optional Import-Package dependency to org.eclipse.jdt.annotation." source="org.openhab.tools.analysis.checkstyle.AnnotationDependencyCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\OSGI-INF\RingDiscoveryService.xml">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="4" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\OSGI-INF\RingHandlerFactory.xml">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="4" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\pom.xml">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\README.md">
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\AbstractRingHandler.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="79" severity="warning" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." source="org.openhab.tools.analysis.checkstyle.AvoidScheduleAtFixedRateCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\AccountHandler.java">
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\ChimeHandler.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="20" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
 <error line="33" severity="info" message="Comment matches to-do format &apos;(TODO)|(FIXME)&apos;." source="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
 <error line="48" severity="info" message="Comment matches to-do format &apos;(TODO)|(FIXME)&apos;." source="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
-<error line="49" severity="info" message="Remove empty line before closing brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
 <error line="54" severity="info" message="Comment matches to-do format &apos;(TODO)|(FIXME)&apos;." source="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
-<error line="55" severity="info" message="Remove empty line before closing brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
 <error line="60" severity="info" message="Comment matches to-do format &apos;(TODO)|(FIXME)&apos;." source="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
-<error line="61" severity="info" message="Remove empty line before closing brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\DoorbellHandler.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\DoorbellHandler.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="24" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
 <error line="71" severity="info" message="Comment matches to-do format &apos;(TODO)|(FIXME)&apos;." source="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
-<error line="72" severity="info" message="Remove empty line before closing brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
 <error line="77" severity="info" message="Comment matches to-do format &apos;(TODO)|(FIXME)&apos;." source="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
-<error line="78" severity="info" message="Remove empty line before closing brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\RingDeviceHandler.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\handler\RingDeviceHandler.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\ApiConstants.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\ApiConstants.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\AbstractRingDevice.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\AbstractRingDevice.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\DataFactory.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\DataFactory.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="17" column="26" severity="info" message="Name &apos;getOAUTH_DATA&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\Doorbell.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\Doorbell.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\Doorbot.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\Feature.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\Feature.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\ParamBuilder.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\ParamBuilder.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\Profile.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\Profile.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\RingDevice.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\RingDevice.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\RingDevices.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\RingDevices.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\RingEvent.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\data\RingEvent.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\discovery\RingDiscoveryService.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\discovery\RingDiscoveryService.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 <error line="36" column="38" severity="info" message="Name &apos;SUPPORTED_THING_TYPES_UIDS&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck"/>
+<error line="115" severity="warning" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." source="org.openhab.tools.analysis.checkstyle.AvoidScheduleAtFixedRateCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\errors\AuthenticationException.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\errors\AuthenticationException.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\errors\DeviceNotFoundException.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\errors\DeviceNotFoundException.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\errors\DuplicateIdException.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\errors\DuplicateIdException.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\errors\IllegalDeviceClassException.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\errors\IllegalDeviceClassException.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RestClient.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RestClient.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="22" column="8" severity="info" message="Unused import - java.util.Base64." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="317" column="20" severity="info" message="Name &apos;get_oauth_token&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"/>
+<error line="319" column="16" severity="info" message="Name &apos;oauth_token&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+<error line="322" column="20" severity="info" message="Name &apos;oauth_data&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+</file>
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RingAccount.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RingAccount.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RingDeviceRegistry.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RingDeviceRegistry.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RingHandlerFactory.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="32" column="37" severity="info" message="Name &apos;SUPPORTED_THING_TYPES_UIDS&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
+<error line="48" severity="info" message="Remove empty line" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
 </file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\internal\RingHandlerFactory.java">
-<error line="48" severity="info" message="Remove empty line after opening brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
-</file>
-<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\RingBindingConstants.java">
+<file name="C:\temp\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.ring\src\main\java\org\openhab\binding\ring\RingBindingConstants.java">
 <error line="24" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
 <error line="25" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
 <error line="26" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
@@ -122,5 +149,7 @@
 <error line="31" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
 <error line="32" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
 <error line="33" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
+<error line="34" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
+<error line="35" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
 </file>
 </checkstyle>

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016 by the respective copyright holders.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -48,7 +48,7 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
     @Override
     public void initialize() {
         logger.debug("Initializing AbstractRingHandler.");
-        super.initialize();
+        // super.initialize();
     }
 
     /**
@@ -65,7 +65,7 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
     /**
      * Check every 60 seconds if one of the alarm times is reached.
      */
-    protected void startAutomaticRefresh() {
+    protected void startAutomaticRefresh(int refreshInterval) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -76,7 +76,8 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
                 }
             }
         };
-        refreshJob = scheduler.scheduleAtFixedRate(runnable, 0, 60, TimeUnit.SECONDS);
+
+        refreshJob = scheduler.scheduleAtFixedRate(runnable, 0, refreshInterval, TimeUnit.SECONDS);
         refreshState();
     }
 

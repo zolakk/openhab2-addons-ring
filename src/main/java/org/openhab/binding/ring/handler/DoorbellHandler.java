@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016 by the respective copyright holders.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,9 @@
  */
 package org.openhab.binding.ring.handler;
 
+import java.math.BigDecimal;
+
+import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
@@ -62,7 +65,9 @@ public class DoorbellHandler extends RingDeviceHandler {
         // updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
         // "Can not access device as username and/or password are invalid");
         if (this.refreshJob == null) {
-            startAutomaticRefresh();
+            Configuration config = getThing().getConfiguration();
+            Integer refreshInterval = ((BigDecimal) config.get("refreshInterval")).intValueExact();
+            startAutomaticRefresh(refreshInterval);
         }
     }
 

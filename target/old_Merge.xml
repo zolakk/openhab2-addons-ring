@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><sca xmlns:functx="http://www.functx.com">
+   <file name=".binding.ring\.classpath">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\about.html">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\build.properties">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\ESH-INF\binding\binding.xml">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="3" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\ESH-INF\i18n\ringdoorbell_xx_XX.properties">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\ESH-INF\thing\account.xml">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="3" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\ESH-INF\thing\channels.xml">
+      <message tool="checkstyle" line="3" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\ESH-INF\thing\chime.xml">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="3" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\ESH-INF\thing\doorbell.xml">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="3" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\META-INF\MANIFEST.MF">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="10" message="Every bundle should have optional Import-Package dependency to org.eclipse.jdt.annotation." priority="2" rule="AnnotationDependencyCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\OSGI-INF\RingDiscoveryService.xml">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="4" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\OSGI-INF\RingHandlerFactory.xml">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="4" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
+   </file>
+   <file name=".binding.ring\pom.xml">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+
+   <file name="org.openhab.binding.ring.handler.AbstractRingHandler.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="79" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
+   </file>
+
+   <file name="org.openhab.binding.ring.handler.ChimeHandler.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="20" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+      <message tool="checkstyle" line="33" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="48" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="54" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="60" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.handler.DoorbellHandler.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="24" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+      <message tool="checkstyle" line="71" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="77" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.handler.RingDeviceHandler.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.ApiConstants.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.AbstractRingDevice.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.DataFactory.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="17" message="Name 'getOAUTH_DATA' must match pattern '^[a-z][a-zA-Z0-9]*$'." priority="3" rule="MethodNameCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.Doorbell.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.Doorbot.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.Feature.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.ParamBuilder.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.Profile.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.RingDevice.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.RingDevices.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.data.RingEvent.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.RestClient.java">
+      <message tool="pmd" line="207" message="&#xA;Avoid throwing raw exception types.&#xA;" priority="2" rule="AvoidThrowingRawExceptionTypes" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" category="strict exceptions"/>
+      <message tool="pmd" line="281" message="&#xA;Avoid throwing raw exception types.&#xA;" priority="2" rule="AvoidThrowingRawExceptionTypes" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" category="strict exceptions"/>
+      <message tool="pmd" line="372" message="&#xA;Avoid throwing raw exception types.&#xA;" priority="2" rule="AvoidThrowingRawExceptionTypes" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" category="strict exceptions"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.RingDeviceRegistry.java">
+      <message tool="pmd" line="59" message="&#xA;Singleton is not thread safe&#xA;" priority="3" rule="NonThreadSafeSingleton" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" category="design"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.discovery.RingDiscoveryService.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="36" message="Name 'SUPPORTED_THING_TYPES_UIDS' must match pattern '^[a-z][a-zA-Z0-9]*$'." priority="3" rule="StaticVariableNameCheck" category="style"/>
+      <message tool="checkstyle" line="115" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
+   <message tool="pmd" line="40" message="&#xA;Singleton is not thread safe&#xA;" priority="3" rule="NonThreadSafeSingleton" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" category="design"/>
+      <message tool="pmd" line="136" message="&#xA;Avoid empty if statements&#xA;" priority="3" rule="EmptyIfStmt" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/empty.html#EmptyIfStmt" category="empty code"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.errors.AuthenticationException.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.errors.DeviceNotFoundException.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.errors.DuplicateIdException.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.errors.IllegalDeviceClassException.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.RestClient.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="22" message="Unused import - java.util.Base64." priority="3" rule="UnusedImportsCheck" category="style"/>
+      <message tool="checkstyle" line="317" message="Name 'get_oauth_token' must match pattern '^[a-z][a-zA-Z0-9]*$'." priority="3" rule="MethodNameCheck" category="style"/>
+      <message tool="checkstyle" line="319" message="Name 'oauth_token' must match pattern '^[a-z][a-zA-Z0-9]*$'." priority="3" rule="LocalVariableNameCheck" category="style"/>
+      <message tool="checkstyle" line="322" message="Name 'oauth_data' must match pattern '^[a-z][a-zA-Z0-9]*$'." priority="3" rule="LocalVariableNameCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.RingAccount.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.RingDeviceRegistry.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.internal.RingHandlerFactory.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="32" message="Name 'SUPPORTED_THING_TYPES_UIDS' must match pattern '^[a-z][a-zA-Z0-9]*$'." priority="3" rule="MemberNameCheck" category="style"/>
+      <message tool="checkstyle" line="48" message="Remove empty line" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.ring.RingBindingConstants.java">
+      <message tool="checkstyle" line="24" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="25" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="26" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="29" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="30" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="31" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="32" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="33" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="34" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="35" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+   </file>
+</sca>

@@ -27,6 +27,11 @@
                 <description>Enter a hardware id that is unique for all your devices connected to Ring.</description>
                 <default>1234-5678-987654321</default>
             </parameter>
+             <parameter name="refreshInterval" type="integer">
+                <label>The refresh interval</label>
+                <description>How often to poll the Ring service for events in seconds</description>
+                <default>5</default>
+            </parameter>
         </config-description>
     </thing-type>
 
