@@ -198,7 +198,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                 String password = (String) config.get("password");
                 String hardwareId = (String) config.get("hardwareId");
                 try {
-                    restClient = new RestClient();
+                    // restClient = new RestClient();
                     userProfile = restClient.getAuthenticatedProfile(username, password, hardwareId);
 
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING,
@@ -226,6 +226,8 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         } else {
             // Update the events
             try {
+                // restClient = new RestClient();
+                restClient.refresh_session(userProfile.getRefreshToken());
                 String id = lastEvents == null || lastEvents.isEmpty() ? "?" : lastEvents.get(0).getEventId();
                 lastEvents = restClient.getHistory(userProfile, 5);
                 if (lastEvents != null && !lastEvents.isEmpty() && !lastEvents.get(0).getEventId().equals(id)) {

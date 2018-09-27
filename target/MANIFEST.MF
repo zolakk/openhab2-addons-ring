@@ -1,19 +1,21 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: org.openhab.binding.ring
 Bundle-SymbolicName: org.openhab.binding.ring;singleton:=true
-Export-Package: org.openhab.binding.ring,org.openhab.binding.ring.hand
- ler
-Bundle-Name: Ring Doorbell Binding
-Bundle-Version: 2.4.0.201809202330
-Bundle-ClassPath: .,lib/json-simple-1.1.1.jar
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: openHAB
-Import-Package: org.openhab.binding.ring,org.openhab.binding.ring.hand
- ler,org.eclipse.smarthome.config.core,org.eclipse.smarthome.config.di
- scovery,org.eclipse.smarthome.core.library.types,org.eclipse.smarthom
- e.core.thing,org.eclipse.smarthome.core.thing.binding,org.eclipse.sma
- rthome.core.thing.binding.builder,org.eclipse.smarthome.core.thing.ty
- pe,org.eclipse.smarthome.core.types,org.slf4j
+Import-Package: org.eclipse.jdt.annotation,org.eclipse.smarthome.confi
+ g.core,org.eclipse.smarthome.config.discovery,org.eclipse.smarthome.c
+ ore.library.types,org.eclipse.smarthome.core.thing,org.eclipse.smarth
+ ome.core.thing.binding,org.eclipse.smarthome.core.thing.binding.build
+ er,org.eclipse.smarthome.core.thing.type,org.eclipse.smarthome.core.t
+ ypes,org.openhab.binding.ring,org.openhab.binding.ring.handler,org.sl
+ f4j
 Service-Component: OSGI-INF/*.xml
+Export-Package: org.openhab.binding.ring,org.openhab.binding.ring.hand
+ ler
+Bundle-Name: Ring Doorbell Binding
+Bundle-Version: 2.4.0.201809270047
+Bundle-ClassPath: .,lib/json-simple-1.1.1.jar
 

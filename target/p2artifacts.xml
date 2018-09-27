@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='osgi.bundle' id='org.openhab.binding.ring' version='2.4.0.201809202330'>
+  <artifact classifier='osgi.bundle' id='org.openhab.binding.ring' version='2.4.0.201809270047'>
     <properties size='5'>
-      <property name='artifact.size' value='73222'/>
-      <property name='download.size' value='73222'/>
+      <property name='artifact.size' value='78029'/>
+      <property name='download.size' value='78029'/>
       <property name='maven-groupId' value='org.openhab.binding'/>
       <property name='maven-artifactId' value='org.openhab.binding.ring'/>
       <property name='maven-version' value='2.4.0-SNAPSHOT'/>
