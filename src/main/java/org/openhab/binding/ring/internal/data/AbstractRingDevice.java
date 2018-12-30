@@ -110,6 +110,17 @@ public abstract class AbstractRingDevice implements RingDevice {
     }
 
     /**
+     * Get battery level
+     *
+     * @return battery level (%)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public Integer getBattery() {
+        return Integer.parseInt(jsonObject.getOrDefault(ApiConstants.DEVICE_BATTERY, "-1").toString());
+    }
+
+    /**
      * Get the registration status.
      *
      * @return

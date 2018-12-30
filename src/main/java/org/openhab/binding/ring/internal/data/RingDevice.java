@@ -63,6 +63,13 @@ public interface RingDevice {
     public String getKind();
 
     /**
+     * Get battery level
+     *
+     * @return battery level (%)
+     */
+    public Integer getBattery();
+
+    /**
      * Get the DiscoveryResult object to identify the device as
      * discovered thing.
      *

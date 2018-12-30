@@ -16,6 +16,15 @@
             <channel id="enabled" typeId="enabled"/>
         </channels>
     </channel-group-type>
+    
+    <channel-group-type id="deviceStatus">
+        <label>Device Status</label>
+        <description>Device Status Information</description>
+            <channels>
+            <channel id="battery" typeId="battery"/>
+        </channels>
+    </channel-group-type>
+    
     <channel-group-type id="eventGroup">
         <label>Events</label>
         <description>Currently selected event information.</description>
@@ -62,5 +71,11 @@
         <label>Enabled (on=yes, off=no)</label>
         <description>On or off</description>
     </channel-type>
-
+    <channel-type id="battery">
+        <item-type>Number</item-type>
+        <label>Battery Level.</label>
+        <description>Battery level in %.</description>
+        <state readOnly="true">
+        </state>
+    </channel-type>
 </thing:thing-descriptions>

@@ -27,8 +27,8 @@ under the License.
     <item>
       <title>File: 41,
              Errors: 0,
-             Warnings: 12,
-             Infos: 62
+             Warnings: 9,
+             Infos: 32
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.AbstractRingDevice.java">src/main/java/org/openhab/binding/ring/internal/data/AbstractRingDevice.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -63,7 +63,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.Doorbot.java">src/main/java/org/openhab/binding/ring/internal/data/Doorbot.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -88,13 +88,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#.classpath">.classpath</a>
-                </td>
-                <td>
-                  1
+                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.account.xml">ESH-INF/thing/account.xml</a>
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0
@@ -102,13 +102,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.account.xml">ESH-INF/thing/account.xml</a>
+                  <a href="${project.url}/checkstyle.html#.classpath">.classpath</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -119,7 +119,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#OSGI-INF.RingDiscoveryService.xml">OSGI-INF/RingDiscoveryService.xml</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1
@@ -133,7 +133,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.RingAccount.java">src/main/java/org/openhab/binding/ring/internal/RingAccount.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -147,7 +147,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.Feature.java">src/main/java/org/openhab/binding/ring/internal/data/Feature.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -161,7 +161,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.RingHandlerFactory.java">src/main/java/org/openhab/binding/ring/internal/RingHandlerFactory.java</a>
                 </td>
                 <td>
-                  3
+                  2
                 </td>
                 <td>
                   0
@@ -189,7 +189,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.Doorbell.java">src/main/java/org/openhab/binding/ring/internal/data/Doorbell.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -203,7 +203,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.RingDevices.java">src/main/java/org/openhab/binding/ring/internal/data/RingDevices.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -217,7 +217,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#ESH-INF.binding.binding.xml">ESH-INF/binding/binding.xml</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1
@@ -231,7 +231,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#pom.xml">pom.xml</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -245,10 +245,10 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.handler.DoorbellHandler.java">src/main/java/org/openhab/binding/ring/handler/DoorbellHandler.java</a>
                 </td>
                 <td>
-                  3
+                  2
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -259,7 +259,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#ESH-INF.thing.chime.xml">ESH-INF/thing/chime.xml</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1
@@ -273,7 +273,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.discovery.RingDiscoveryService.java">src/main/java/org/openhab/binding/ring/internal/discovery/RingDiscoveryService.java</a>
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   1
@@ -287,7 +287,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.errors.IllegalDeviceClassException.java">src/main/java/org/openhab/binding/ring/internal/errors/IllegalDeviceClassException.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -301,7 +301,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.RingBindingConstants.java">src/main/java/org/openhab/binding/ring/RingBindingConstants.java</a>
                 </td>
                 <td>
-                  10
+                  11
                 </td>
                 <td>
                   0
@@ -315,7 +315,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.RingDevice.java">src/main/java/org/openhab/binding/ring/internal/data/RingDevice.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -329,7 +329,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#build.properties">build.properties</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -343,7 +343,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#ESH-INF.thing.doorbell.xml">ESH-INF/thing/doorbell.xml</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1
@@ -357,7 +357,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.ParamBuilder.java">src/main/java/org/openhab/binding/ring/internal/data/ParamBuilder.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -371,7 +371,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.handler.AbstractRingHandler.java">src/main/java/org/openhab/binding/ring/handler/AbstractRingHandler.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1
@@ -385,7 +385,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.handler.RingDeviceHandler.java">src/main/java/org/openhab/binding/ring/handler/RingDeviceHandler.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -399,7 +399,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.RingEvent.java">src/main/java/org/openhab/binding/ring/internal/data/RingEvent.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -427,21 +427,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#META-INF.MANIFEST.MF">META-INF/MANIFEST.MF</a>
                 </td>
                 <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
                   0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.Profile.java">src/main/java/org/openhab/binding/ring/internal/data/Profile.java</a>
-                </td>
-                <td>
-                  1
                 </td>
                 <td>
                   0
@@ -455,7 +441,21 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.errors.DeviceNotFoundException.java">src/main/java/org/openhab/binding/ring/internal/errors/DeviceNotFoundException.java</a>
                 </td>
                 <td>
-                  1
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.Profile.java">src/main/java/org/openhab/binding/ring/internal/data/Profile.java</a>
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   0
@@ -469,10 +469,10 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.handler.ChimeHandler.java">src/main/java/org/openhab/binding/ring/handler/ChimeHandler.java</a>
                 </td>
                 <td>
-                  5
+                  7
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -483,7 +483,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.ApiConstants.java">src/main/java/org/openhab/binding/ring/internal/ApiConstants.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -497,7 +497,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#about.html">about.html</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -525,7 +525,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.RestClient.java">src/main/java/org/openhab/binding/ring/internal/RestClient.java</a>
                 </td>
                 <td>
-                  6
+                  5
                 </td>
                 <td>
                   0
@@ -539,7 +539,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.data.DataFactory.java">src/main/java/org/openhab/binding/ring/internal/data/DataFactory.java</a>
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   0
@@ -578,10 +578,10 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.errors.AuthenticationException.java">src/main/java/org/openhab/binding/ring/internal/errors/AuthenticationException.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.errors.DuplicateIdException.java">src/main/java/org/openhab/binding/ring/internal/errors/DuplicateIdException.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -592,10 +592,10 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.errors.DuplicateIdException.java">src/main/java/org/openhab/binding/ring/internal/errors/DuplicateIdException.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.ring.internal.errors.AuthenticationException.java">src/main/java/org/openhab/binding/ring/internal/errors/AuthenticationException.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -609,7 +609,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#OSGI-INF.RingHandlerFactory.xml">OSGI-INF/RingHandlerFactory.xml</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1

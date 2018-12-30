@@ -20,7 +20,7 @@ import org.eclipse.smarthome.core.types.Command;
  * This clock calculates the sunrise and sunset times based on the
  * location and current date and timezone.
  *
- * @author wim
+ * @author Wim Vissers - Initial contribution
  *
  */
 public class ChimeHandler extends AbstractRingHandler {

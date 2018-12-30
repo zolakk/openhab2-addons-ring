@@ -8,9 +8,12 @@
  */
 package org.openhab.binding.ring.handler;
 
+import static org.openhab.binding.ring.RingBindingConstants.CHANNEL_STATUS_BATTERY;
+
 import java.math.BigDecimal;
 
 import org.eclipse.smarthome.config.core.Configuration;
+import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
@@ -24,10 +27,11 @@ import org.openhab.binding.ring.internal.errors.IllegalDeviceClassException;
 /**
  * The handler for a Ring Video Doorbell.
  *
- * @author wim
+ * @author Wim Vissers - Initial contribution
  *
  */
 public class DoorbellHandler extends RingDeviceHandler {
+    private Integer lastBattery = -1;
 
     public DoorbellHandler(Thing thing) {
         super(thing);
@@ -87,6 +91,12 @@ public class DoorbellHandler extends RingDeviceHandler {
     protected void minuteTick() {
         if (device == null) {
             initialize();
+        }
+
+        if ((device != null) && (device.getBattery() != lastBattery)) {
+            ChannelUID channelUID = new ChannelUID(thing.getUID(), CHANNEL_STATUS_BATTERY);
+            updateState(channelUID, new DecimalType(device.getBattery()));
+            lastBattery = device.getBattery();
         }
     }
 
