@@ -13,6 +13,7 @@ import static org.openhab.binding.ring.RingBindingConstants.*;
 import java.math.BigDecimal;
 
 import org.eclipse.smarthome.config.core.Configuration;
+import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.IncreaseDecreaseType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.UpDownType;
@@ -75,6 +76,9 @@ public abstract class RingDeviceHandler extends AbstractRingHandler {
                     break;
                 case CHANNEL_CONTROL_ENABLED:
                     updateState(channelUID, enabled);
+                    break;
+                case CHANNEL_STATUS_BATTERY:
+                    updateState(channelUID, new DecimalType(device.getBattery()));
                     break;
                 default:
                     logger.debug("Command received for an unknown channel: {}", channelUID.getId());

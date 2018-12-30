@@ -28,6 +28,9 @@ public class RingBindingConstants {
     // List of all Channel ids
     public final static String CHANNEL_CONTROL_STATUS = "control#status";
     public final static String CHANNEL_CONTROL_ENABLED = "control#enabled";
+
+    public final static String CHANNEL_STATUS_BATTERY = "status#battery";
+
     public final static String CHANNEL_EVENT_URL = "event#url";
     public final static String CHANNEL_EVENT_CREATED_AT = "event#createdAt";
     public final static String CHANNEL_EVENT_KIND = "event#kind";

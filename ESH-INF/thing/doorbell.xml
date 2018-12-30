@@ -12,6 +12,7 @@
 
         <channel-groups>
             <channel-group id="control" typeId="controlGroup" />
+            <channel-group id="status"  typeId="deviceStatus" />
         </channel-groups>
          <config-description>
             <parameter name="offOffset" type="decimal" >

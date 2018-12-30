@@ -14,7 +14,7 @@ package org.openhab.binding.ring.internal;
 
 public class ApiConstants {
     public static final int API_VERSION = 9;
-    
+
     // API resources
     public static final String API_OAUTH_ENDPOINT = "https://oauth.ring.com/oauth/token";
     public static final String API_BASE = "https://api.ring.com";
@@ -41,7 +41,7 @@ public class ApiConstants {
 
     public static final String KIND_DING = "ding";
     public static final String KIND_MOTION = "motion";
-    //public static final String CHIME_TEST_SOUND_KINDS = (KIND_DING, KIND_MOTION);
+    // public static final String CHIME_TEST_SOUND_KINDS = (KIND_DING, KIND_MOTION);
 
     // default values
     public static final int CHIME_VOL_MIN = 0;
@@ -55,7 +55,7 @@ public class ApiConstants {
 
     // error strings
     public static final String MSG_BOOLEAN_REQUIRED = "Boolean value is required.";
-    public static final String MSG_EXISTING_TYPE = "Integer value where {0}.";//.format(DOORBELL_EXISTING_TYPE);
+    public static final String MSG_EXISTING_TYPE = "Integer value where {0}.";// .format(DOORBELL_EXISTING_TYPE);
     public static final String MSG_GENERIC_FAIL = "Sorry.. Something went wrong...";
     public static final String FILE_EXISTS = "The file {0} already exists.";
     public static final String MSG_VOL_OUTBOUND = "Must be within the {0}-{1}.";
@@ -101,5 +101,6 @@ public class ApiConstants {
     public static final String DEVICE_FIRMWARE_VERSION = "firmware_version";
     public static final String DEVICE_TIME_ZONE = "time_zone";
     public static final String DEVICE_KIND = "kind";
+    public static final String DEVICE_BATTERY = "battery_life";
 
 }
