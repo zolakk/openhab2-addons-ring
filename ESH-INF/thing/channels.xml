@@ -32,6 +32,8 @@
             <channel id="url" typeId="url"/>
             <channel id="createdAt" typeId="createdAt"/>
             <channel id="kind" typeId="kind"/>
+	    <channel typeId="doorbotId" id="doorbotId"></channel>
+            <channel typeId="doorbotDescription" id="doorbotDescription"></channel>
         </channels>
     </channel-group-type> 
     
