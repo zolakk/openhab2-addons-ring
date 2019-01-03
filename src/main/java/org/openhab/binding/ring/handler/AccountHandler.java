@@ -13,6 +13,8 @@ import static org.openhab.binding.ring.RingBindingConstants.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.library.types.DateTimeType;
@@ -42,6 +44,10 @@ import org.openhab.binding.ring.internal.errors.DuplicateIdException;
  * @author Wim Vissers - Initial contribution
  */
 public class AccountHandler extends AbstractRingHandler implements RingAccount {
+
+    private // Scheduler
+    ScheduledFuture<?> jobTokenRefresh = null;
+    private Runnable runnableToken = null;
 
     /**
      * The user profile retrieved when authenticating.
@@ -181,6 +187,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         // updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
         // "Can not access device as username and/or password are invalid");
         startAutomaticRefresh(refreshInterval);
+        startSessionRefresh(300);
     }
 
     @Override
@@ -226,8 +233,8 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         } else {
             // Update the events
             try {
-                // restClient = new RestClient();
-                restClient.refresh_session(userProfile.getRefreshToken());
+                // restClient.refresh_session(userProfile.getRefreshToken());
+
                 String id = lastEvents == null || lastEvents.isEmpty() ? "?" : lastEvents.get(0).getEventId();
                 lastEvents = restClient.getHistory(userProfile, 5);
                 if (lastEvents != null && !lastEvents.isEmpty() && !lastEvents.get(0).getEventId().equals(id)) {
@@ -246,6 +253,33 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         }
     }
 
+    /**
+     * Check every 60 seconds if one of the alarm times is reached.
+     */
+    protected void startSessionRefresh(int refreshInterval) {
+        runnableToken = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (restClient != null) {
+                        restClient.refresh_session(userProfile.getRefreshToken());
+                    }
+                } catch (Exception e) {
+                    logger.debug("SessionRefresh: Exception occurred during execution: {}", e.getMessage(), e);
+                }
+            }
+        };
+
+        jobTokenRefresh = scheduler.scheduleAtFixedRate(runnableToken, 90, refreshInterval, TimeUnit.SECONDS);
+    }
+
+    protected void stopSessionRefresh() {
+        if (jobTokenRefresh != null) {
+            jobTokenRefresh.cancel(true);
+            jobTokenRefresh = null;
+        }
+    }
+
     @Override
     public RestClient getRestClient() {
         return restClient;
@@ -254,5 +288,14 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
     @Override
     public Profile getProfile() {
         return userProfile;
+    }
+
+    /**
+     * Dispose off the refreshJob nicely.
+     */
+    @Override
+    public void dispose() {
+        stopSessionRefresh();
+        super.dispose();
     }
 }
