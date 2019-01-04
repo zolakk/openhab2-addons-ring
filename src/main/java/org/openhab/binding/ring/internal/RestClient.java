@@ -214,7 +214,9 @@ public class RestClient {
                     throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
             }
 
-            logger.debug("RestApi resource: {}, response code: {}.", resourceUrl, conn.getResponseCode());
+            if (conn.getResponseCode() != 200) {
+                logger.debug("RestApi resource: {}, response code: {}.", resourceUrl, conn.getResponseCode());
+            }
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
             String line;
             while ((line = br.readLine()) != null) {
