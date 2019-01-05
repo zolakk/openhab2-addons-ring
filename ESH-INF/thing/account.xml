@@ -24,8 +24,8 @@
             </parameter>
             <parameter name="hardwareId" type="text">
                 <label>A unique hardware id.</label>
-                <description>Enter a hardware id that is unique for all your devices connected to Ring.</description>
-                <default>1234-5678-987654321</default>
+                <description>Enter a hardware id that is unique for all your devices connected to Ring (e.g. computer's MAC address).</description>
+                <default></default>
             </parameter>
              <parameter name="refreshInterval" type="integer">
                 <label>The refresh interval</label>
@@ -36,3 +36,4 @@
     </thing-type>
 
 </thing:thing-descriptions>
+

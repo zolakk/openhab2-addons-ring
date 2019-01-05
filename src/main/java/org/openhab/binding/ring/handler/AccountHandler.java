@@ -12,6 +12,8 @@ import static org.openhab.binding.ring.RingBindingConstants.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +22,7 @@ import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.library.types.DateTimeType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.StringType;
+import org.eclipse.smarthome.core.net.NetworkAddressService;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
@@ -70,8 +73,11 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
      */
     private int eventIndex;
 
-    public AccountHandler(Thing thing) {
+    private NetworkAddressService networkAddressService;
+
+    public AccountHandler(Thing thing, NetworkAddressService networkAddressService) {
         super(thing);
+        this.networkAddressService = networkAddressService;
         eventIndex = 0;
     }
 
@@ -161,14 +167,25 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         super.initialize();
 
         Configuration config = getThing().getConfiguration();
-
+        Integer refreshInterval = ((BigDecimal) config.get("refreshInterval")).intValueExact();
         String username = (String) config.get("username");
         String password = (String) config.get("password");
         String hardwareId = (String) config.get("hardwareId");
 
-        Integer refreshInterval = ((BigDecimal) config.get("refreshInterval")).intValueExact();
-
         try {
+            if (hardwareId.isEmpty()) {
+                hardwareId = getLocalMAC();
+                if ((hardwareId == null) || hardwareId.isEmpty()) {
+                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                            "Hardware ID missing, check thing config");
+                    return;
+                }
+                // write hardwareId to thing config
+                config.remove("hardwareId");
+                config.put("hardwareId", hardwareId);
+                updateConfiguration(config);
+            }
+
             restClient = new RestClient();
             userProfile = restClient.getAuthenticatedProfile(username, password, hardwareId);
 
@@ -178,6 +195,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         } catch (ParseException e) {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
                     "Invalid response from api.ring.com.");
+        } catch (Exception e) {
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                    "Initialization failed: " + e.getMessage());
         }
 
         // Note: When initialization can NOT be done set the status with more details for further
@@ -278,6 +298,31 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             jobTokenRefresh.cancel(true);
             jobTokenRefresh = null;
         }
+    }
+
+    String getLocalMAC() throws Exception {
+        // get local ip from OH system settings
+        String localIP = networkAddressService.getPrimaryIpv4HostAddress();
+        if ((localIP == null) || (localIP.isEmpty())) {
+            logger.info("No local IP selected in openHAB system configuration");
+            return "";
+        }
+
+        // get MAC address
+        InetAddress ip = InetAddress.getByName(localIP);
+        NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+        if (network != null) {
+            byte[] mac = network.getHardwareAddress();
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < mac.length; i++) {
+                sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+            }
+            String localMAC = sb.toString();
+            logger.info("Local IP address='{}', local MAC address = '{}'", localIP, localMAC);
+            return localMAC;
+        }
+        return "";
     }
 
     @Override
