@@ -33,6 +33,7 @@ events. If hardware ID is not specified, the MAC address of the system running O
 
 ### Events group (Ring Account Binding Thing only):
 Todo: Move these to the device thing
+
 | Channel Type ID                | Item Type | Description                                                                                  |
 |--------------------------------|-----------|----------------------------------------------------------------------------------------------|
 | URL to recorded video          | String    | The URL to a recorded video (only when subscribed on ring.com)                               |
