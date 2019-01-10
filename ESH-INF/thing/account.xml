@@ -21,6 +21,7 @@
             <parameter name="password" type="text" required="true">
                 <label>The Ring account's password</label>
                 <description>Enter the password you used to subscribe to the Ring services</description>
+                <context>password</context>
             </parameter>
             <parameter name="hardwareId" type="text">
                 <label>A unique hardware id</label>
