@@ -132,7 +132,7 @@ public class RestClient {
                     break;
                 case 400:
                 case 401:
-                    throw new AuthenticationException("Invalid username or password.");
+                    throw new AuthenticationException("Invalid username or password");
                 default:
                     logger.error("Unhandled http response code: {}", conn.getResponseCode());
                     throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
@@ -208,7 +208,7 @@ public class RestClient {
                 case 400:
                 case 401:
                     // break;
-                    throw new AuthenticationException("Invalid request.");
+                    throw new AuthenticationException("Invalid request");
                 default:
                     logger.error("Unhandled http response code: {}", conn.getResponseCode());
                     throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());

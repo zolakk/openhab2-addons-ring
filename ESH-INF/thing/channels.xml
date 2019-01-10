@@ -41,27 +41,27 @@
     <channel-type id="url">
         <item-type>String</item-type>
         <label>URL to recorded video.</label>
-        <description>The URL to a recorded video (only when subscribed).</description>
+        <description>The URL to a recorded video (only when subscribed)</description>
     </channel-type>
     <channel-type id="doorbotId">
         <item-type>String</item-type>
-        <label>The id of the doorbot.</label>
-        <description>The id of the doorbot that generated the currently selected event.</description>
+        <label>The id of the Ring device</label>
+        <description>The id of the Ring device (doorbell, chime, etc) that generated the currently selected event</description>
     </channel-type>
     <channel-type id="doorbotDescription">
         <item-type>String</item-type>
-        <label>The description of the doorbot.</label>
-        <description>The description of the doorbot that generated the currently selected event.</description>
+        <label>The description of the Ring device</label>
+        <description>The description of the Ring device (doorbell, chime, etc) that generated the currently selected event</description>
     </channel-type>
     <channel-type id="createdAt">
         <item-type>DateTime</item-type>
-        <label>When the event was created.</label>
-        <description>The date and time the event was created.</description>
+        <label>When the event was created</label>
+        <description>The date and time the event was created</description>
     </channel-type>
     <channel-type id="kind">
         <item-type>String</item-type>
-        <label>The kind of event.</label>
-        <description>The kind of event, usually 'motion' or 'ding'.</description>
+        <label>The kind of event</label>
+        <description>The kind of event, usually 'motion' or 'ding'</description>
     </channel-type>
     <channel-type id="status">
         <item-type>Switch</item-type>
@@ -75,8 +75,8 @@
     </channel-type>
     <channel-type id="battery">
         <item-type>Number</item-type>
-        <label>Battery Level.</label>
-        <description>Battery level in %.</description>
+        <label>Battery Level</label>
+        <description>Battery level in %</description>
         <state readOnly="true">
         </state>
     </channel-type>

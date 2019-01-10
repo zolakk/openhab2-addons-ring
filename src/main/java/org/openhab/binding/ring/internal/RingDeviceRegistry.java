@@ -71,10 +71,10 @@ public class RingDeviceRegistry {
      */
     public void addRingDevice(RingDevice ringDevice) throws DuplicateIdException {
         if (ringDevice == null) {
-            logger.debug("Ignoring null ringDevice.");
+            logger.debug("Ignoring null ringDevice");
         } else {
             if (devices.containsKey(ringDevice.getId())) {
-                throw new DuplicateIdException("Ring device with duplicate id " + ringDevice.getId() + " ignored.");
+                throw new DuplicateIdException("Ring device with duplicate id " + ringDevice.getId() + " ignored");
             } else {
                 ringDevice.setRegistrationStatus(Status.ADDED);
                 devices.put(ringDevice.getId(), ringDevice);
@@ -112,7 +112,7 @@ public class RingDeviceRegistry {
         if (devices.containsKey(id)) {
             return devices.get(id);
         } else {
-            throw new DeviceNotFoundException("Device with id '" + id + "' not found.");
+            throw new DeviceNotFoundException("Device with id '" + id + "' not found");
         }
     }
 
@@ -135,7 +135,7 @@ public class RingDeviceRegistry {
     /**
      * Set the registration status.
      *
-     * @param id the id of the RingDevice.
+     * @param id     the id of the RingDevice.
      * @param status the new registration status.
      */
     public void setStatus(String id, Status status) {

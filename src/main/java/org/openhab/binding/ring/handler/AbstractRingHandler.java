@@ -47,7 +47,7 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
 
     @Override
     public void initialize() {
-        logger.debug("Initializing AbstractRingHandler.");
+        logger.debug("Initializing AbstractRingHandler");
         // super.initialize();
     }
 

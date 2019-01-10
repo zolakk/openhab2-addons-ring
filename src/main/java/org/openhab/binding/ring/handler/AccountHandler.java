@@ -163,7 +163,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
 
     @Override
     public void initialize() {
-        logger.debug("Initializing Ring Account handler.");
+        logger.debug("Initializing Ring Account handler");
         super.initialize();
 
         Configuration config = getThing().getConfiguration();
@@ -191,7 +191,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
 
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
         } catch (AuthenticationException ex) {
-            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials.");
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials");
         } catch (ParseException e) {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
                     "Invalid response from api.ring.com.");
@@ -231,7 +231,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING,
                             "Retrieving device list");
                 } catch (AuthenticationException ex) {
-                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials.");
+                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials");
                 } catch (ParseException e1) {
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
                             "Invalid response from api.ring.com.");
@@ -268,7 +268,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             } catch (ParseException | AuthenticationException ex) {
                 registry = null;
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                        "Invalid response from ring.com.");
+                        "Invalid response from ring.com");
             }
         }
     }

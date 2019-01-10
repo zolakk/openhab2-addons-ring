@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.2.0" immediate="true" name="org.openhab.binding.ring.internal.discovery.RingDiscoveryService" configuration-pid="discovery.ring">
+    <service servicefactory="false">
+        <provide interface="org.eclipse.smarthome.config.discovery.DiscoveryService"/>
+    </service>
+    <implementation class="org.openhab.binding.ring.internal.discovery.RingDiscoveryService"/>
+</scr:component>

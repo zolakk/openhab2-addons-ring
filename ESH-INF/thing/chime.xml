@@ -8,7 +8,7 @@
     <!-- Ring Chime Thing Type -->
     <thing-type id="chime">
         <label>Chime Binding Thing</label>
-        <description>Ring Chime connected to the system.</description>
+        <description>Ring Chime connected to the system</description>
 
        <channel-groups>
             <channel-group id="control" typeId="controlGroup" />

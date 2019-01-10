@@ -5,7 +5,7 @@
 				 xsi:schemaLocation="http://eclipse.org/smarthome/schemas/binding/v1.0.0 http://eclipse.org/smarthome/schemas/binding-1.0.0.xsd">
 
 	<name>Ring Binding</name>
-	<description>This is the binding for ring.com devices like the Video Doorbell.</description>
+	<description>This is the binding for ring.com devices like the Video Doorbell</description>
 	<author>Wim Vissers</author>
 
 </binding:binding>

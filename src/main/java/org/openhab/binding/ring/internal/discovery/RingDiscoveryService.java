@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The BeeClearDiscoveryService is responsible for auto detecting a BeeClear
+ * The RingDiscoveryService is responsible for auto detecting a Ring
  * device in the local network.
  *
  * @author Wim Vissers - Initial contribution
@@ -55,7 +55,6 @@ public class RingDiscoveryService extends AbstractDiscoveryService {
 
     public void activate() {
         logger.debug("Starting Ring discovery...");
-        // removeOlderResults(System.currentTimeMillis(), getSupportedTypes());
         startScan();
         startBackgroundDiscovery();
     }
@@ -73,27 +72,6 @@ public class RingDiscoveryService extends AbstractDiscoveryService {
             thingDiscovered(device.getDiscoveryResult());
             registry.setStatus(device.getId(), RingDeviceRegistry.Status.DISCOVERED);
         }
-        /**
-         * if (holdOff == 0) {
-         * if (!BeeClearRegistry.getInstance().isRegistered(BEECLEAR_HOSTNAME, BEECLEAR_PORT)) {
-         * try {
-         * SoftwareVersion softwareVersion = restClient.getSoftwareVersion();
-         * if (softwareVersion.getInfo() != null && !softwareVersion.getInfo().isEmpty()) {
-         * DiscoveryResult discoveryResult = DiscoveryResultBuilder
-         * .create(new ThingUID("beeclear:meter:unit1")).withProperties(getConfigProperties())
-         * .withLabel("BeeClear Device").build();
-         * thingDiscovered(discoveryResult);
-         * BeeClearRegistry.getInstance().registerByName(BEECLEAR_HOSTNAME, BEECLEAR_PORT);
-         * }
-         * } catch (IOException e) {
-         * logger.debug("Could not connect to BeeClear device.", e);
-         * }
-         * }
-         * }
-         * if (holdOff > 0) {
-         * holdOff--;
-         * }
-         */
     }
 
     @Override
@@ -108,13 +86,6 @@ public class RingDiscoveryService extends AbstractDiscoveryService {
                 }
             }
         };
-        /*
-         * logger.info("Start BeeClear device background discovery");
-         * if (discoveryJob == null || discoveryJob.isCancelled()) {
-         * restClient = new RestClient(BEECLEAR_HOSTNAME, BEECLEAR_PORT);
-         * discoveryJob = scheduler.scheduleAtFixedRate(runnable, 0, INTERVAL, TimeUnit.SECONDS);
-         * }
-         */
         discoveryJob = scheduler.scheduleAtFixedRate(runnable, 0, INTERVAL, TimeUnit.SECONDS);
     }
 

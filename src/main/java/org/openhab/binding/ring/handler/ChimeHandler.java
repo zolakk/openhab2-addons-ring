@@ -31,7 +31,7 @@ public class ChimeHandler extends AbstractRingHandler {
 
     @Override
     public void initialize() {
-        logger.debug("Initializing Chime handler.");
+        logger.debug("Initializing Chime handler");
         super.initialize();
         // TODO: Initialize the thing. If done set status to ONLINE to indicate proper working.
         // Long running initialization should be done asynchronously in background.

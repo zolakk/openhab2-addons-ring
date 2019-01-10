@@ -39,7 +39,7 @@ public class DoorbellHandler extends RingDeviceHandler {
 
     @Override
     public void initialize() {
-        logger.debug("Initializing Doorbell handler.");
+        logger.debug("Initializing Doorbell handler");
         super.initialize();
 
         // Configuration config = getThing().getConfiguration();
@@ -52,14 +52,14 @@ public class DoorbellHandler extends RingDeviceHandler {
                 updateStatus(ThingStatus.ONLINE);
             } catch (DeviceNotFoundException e) {
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
-                        "Device with id '" + id + "' not found.");
+                        "Device with id '" + id + "' not found");
             } catch (IllegalDeviceClassException e) {
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
-                        "Device with id '" + id + "' of wrong type.");
+                        "Device with id '" + id + "' of wrong type");
             }
         } else {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING,
-                    "Waiting for RingAccount to initialize.");
+                    "Waiting for RingAccount to initialize");
         }
 
         // Note: When initialization can NOT be done set the status with more details for further
