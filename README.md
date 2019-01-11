@@ -26,12 +26,14 @@ events. If hardware ID is not specified, the MAC address of the system running O
 ## Channels
 
 ### Control group (all things):
+
 | Channel Type ID | Item Type | Description                           |
 |-----------------|-----------|---------------------------------------|
 | Status          | Switch    | The status of the device/account      |
 | Enabled         | Switch    | Enable polling of this device/account |
 
 ### Events group (Ring Account Binding Thing only):
+
 Todo: Move these to the device thing
 | Channel Type ID                | Item Type | Description                                                                                  |
 |--------------------------------|-----------|----------------------------------------------------------------------------------------------|
@@ -42,6 +44,7 @@ Todo: Move these to the device thing
 | The description of the doorbot | String    | The description of the doorbot that generated the currently selected event (e.g. Front Door) |
 
 ### Device Status (Video Doorbell Binding Thing only):
+
 | Channel Type ID  | Item Type | Description         |
 |------------------|-----------|---------------------|
 | Battery level    | Number    | Battery level in %  |
