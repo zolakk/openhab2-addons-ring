@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
  * device in the local network.
  *
  * @author Wim Vissers - Initial contribution
+ * @author Chris Milbert - Stickupcam contribution
  */
 @Component(service = DiscoveryService.class, immediate = true, configurationPid = "discovery.ring")
 public class RingDiscoveryService extends AbstractDiscoveryService {
@@ -45,6 +46,7 @@ public class RingDiscoveryService extends AbstractDiscoveryService {
             SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_ACCOUNT);
             SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_CHIME);
             SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_DOORBELL);
+            SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_STICKUPCAM);
         }
         return SUPPORTED_THING_TYPES_UIDS;
     }

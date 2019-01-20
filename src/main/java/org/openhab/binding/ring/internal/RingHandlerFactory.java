@@ -22,6 +22,7 @@ import org.eclipse.smarthome.core.thing.binding.ThingHandlerFactory;
 import org.openhab.binding.ring.handler.AccountHandler;
 import org.openhab.binding.ring.handler.ChimeHandler;
 import org.openhab.binding.ring.handler.DoorbellHandler;
+import org.openhab.binding.ring.handler.StickupcamHandler;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -30,6 +31,7 @@ import org.osgi.service.component.annotations.Reference;
  * handlers.
  *
  * @author Wim Vissers - Initial contribution
+ * @author Chris Milbert - Stickupcam contribution
  */
 @Component(service = { ThingHandlerFactory.class,
         RingHandlerFactory.class }, immediate = true, configurationPid = "binding.ring")
@@ -43,6 +45,7 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_ACCOUNT);
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_DOORBELL);
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_CHIME);
+        SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_STICKUPCAM);
     }
 
     @Override
@@ -61,8 +64,9 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
             return new DoorbellHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_CHIME)) {
             return new ChimeHandler(thing);
+        } else if (thingTypeUID.equals(THING_TYPE_STICKUPCAM)) {
+            return new StickupcamHandler(thing);
         }
-
         return null;
     }
 

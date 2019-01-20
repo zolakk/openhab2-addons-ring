@@ -49,6 +49,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Wim Vissers - Initial contribution
  * @author Pete Mietlowski - Updated authentication routines
+ * @author Chris Milbert - Stickupcam contribution
  */
 public class RestClient {
 
