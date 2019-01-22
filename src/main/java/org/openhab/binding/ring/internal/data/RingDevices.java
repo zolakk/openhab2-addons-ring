@@ -20,10 +20,11 @@ import org.openhab.binding.ring.internal.RingAccount;
 /**
  *
  * @author Wim Vissers - Initial contribution
+ * @author Chris Milbert - stickupcam contribution
  */
 public class RingDevices {
-
     private List<Doorbell> doorbells;
+    private List<Stickupcam> stickupcams;
 
     /**
      * Create RingDevices instance from JSON Object.
@@ -103,12 +104,13 @@ public class RingDevices {
      */
     public RingDevices(JSONObject jsonRingDevices, RingAccount ringAccount) {
         addDoorbells((JSONArray) jsonRingDevices.get(ApiConstants.DEVICES_DOORBOTS), ringAccount);
+        addStickupCams((JSONArray) jsonRingDevices.get(ApiConstants.DEVICES_STICKUP_CAMS), ringAccount);
     }
 
     /**
      * Helper method to create the doorbell list.
      *
-     * @param doorbells
+     * @param jsonDoorbells
      */
     private final void addDoorbells(JSONArray jsonDoorbells, RingAccount ringAccount) {
         doorbells = new ArrayList<>();
@@ -129,6 +131,29 @@ public class RingDevices {
     }
 
     /**
+     * Retrieve the Stickupcams Collection.
+     *
+     * @return
+     */
+    public Collection<Stickupcam> getStickupcams() {
+        return stickupcams;
+    }
+
+    /**
+     * Helper method to create the stickupcam list.
+     *
+     * @param jsonStickupcams
+     */
+    private final void addStickupCams(JSONArray jsonStickupcams, RingAccount ringAccount) {
+        stickupcams = new ArrayList<>();
+        for (Object obj : jsonStickupcams) {
+            Stickupcam stickupcam = new Stickupcam((JSONObject) obj);
+            stickupcam.setRingAccount(ringAccount);
+            stickupcams.add(stickupcam);
+        }
+    }
+
+    /**
      * Retrieve a collection of all devices.
      *
      * @return
@@ -136,6 +161,7 @@ public class RingDevices {
     public Collection<RingDevice> getRingDevices() {
         List<RingDevice> result = new ArrayList<>();
         result.addAll(doorbells);
+        result.addAll(stickupcams);
         return result;
     }
 

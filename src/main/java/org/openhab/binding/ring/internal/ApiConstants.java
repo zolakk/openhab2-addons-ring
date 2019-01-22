@@ -13,7 +13,7 @@ package org.openhab.binding.ring.internal;
  */
 
 public class ApiConstants {
-    public static final int API_VERSION = 9;
+    public static final int API_VERSION = 11;
 
     // API resources
     public static final String API_OAUTH_ENDPOINT = "https://oauth.ring.com/oauth/token";

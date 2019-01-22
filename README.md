@@ -44,7 +44,7 @@ Todo: Move these to the device thing
 | The id of the doorbot          | String    | The internal id of the doorbot that generated the currently selected event                   |
 | The description of the doorbot | String    | The description of the doorbot that generated the currently selected event (e.g. Front Door) |
 
-### Device Status (Video Doorbell Binding Thing only):
+### Device Status (Video Doorbell Binding Thing and Stickup Cam Binding Thing only):
 
 | Channel Type ID  | Item Type | Description         |
 |------------------|-----------|---------------------|
@@ -58,6 +58,7 @@ ring.things:
 ring:account:ringAccount "Ring Account"     [ username="user@domain.com", password="XXXXXXX", hardwareId="AA-BB-CC-DD-EE-FF", refreshInterval=5 ]
 ring:doorbell:1          "Ring Doorbell"    [ refreshInterval=5, offOffset=0 ]
 ring:chime:1             "Ring Chime"       [ refreshInterval=5, offOffset=0 ]
+ring:stickup:1           "Ring Stickup Camera"       [ refreshInterval=5, offOffset=0 ]
 ```
 
 ring.items:
@@ -77,5 +78,9 @@ Number     RingDoorbellBattery            "Ring Doorbell Battery [%s]%"     { ch
 
 Switch     RingChimeStatus                "Ring Chime Status"               { channel="ring:chime:1:control#status" }
 Switch     RingChimeEnabled               "Ring Chime Polling Enabled"      { channel="ring:chime:1:control#enabled" }
+
+Switch     RingStickupStatus             "Ring Stickup Status"            { channel="ring:stickup:1:control#status" }
+Switch     RingStickupEnabled            "Ring Stickup Polling Enabled"   { channel="ring:stickup:1:control#enabled" }
+Number     RingStickupBattery            "Ring Stickup Battery [%s]%"     { channel="ring:stickup:1:status#battery"}
 
 ```
