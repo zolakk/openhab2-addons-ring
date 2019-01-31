@@ -1,10 +1,14 @@
 /**
- * Copyright (c) 2010-2018 by the respective copyright holders.
+ * Copyright (c) 2010-2019 Contributors to the openHAB project
  *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * See the NOTICE file(s) distributed with this work for additional
+ * information.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0
+ *
+ * SPDX-License-Identifier: EPL-2.0
  */
 package org.openhab.binding.ring.handler;
 
@@ -210,14 +214,18 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         startSessionRefresh(300);
     }
 
+    private void refreshRegistry() throws ParseException, AuthenticationException, DuplicateIdException {
+        RingDevices ringDevices = restClient.getRingDevices(userProfile, this);
+        registry = RingDeviceRegistry.getInstance();
+        registry.addRingDevices(ringDevices.getRingDevices());
+    }
+
     @Override
     protected void minuteTick() {
         if (registry == null) {
             try {
                 // Init the devices
-                RingDevices ringDevices = restClient.getRingDevices(userProfile, this);
-                registry = RingDeviceRegistry.getInstance();
-                registry.addRingDevices(ringDevices.getRingDevices());
+                refreshRegistry();
                 updateStatus(ThingStatus.ONLINE);
             } catch (AuthenticationException | ParseException e) {
                 Configuration config = getThing().getConfiguration();
@@ -237,9 +245,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                             "Invalid response from api.ring.com.");
                 } finally {
                     try {
-                        RingDevices ringDevices = restClient.getRingDevices(userProfile, this);
-                        registry = RingDeviceRegistry.getInstance();
-                        registry.addRingDevices(ringDevices.getRingDevices());
+                        refreshRegistry();
                         updateStatus(ThingStatus.ONLINE);
                     } catch (DuplicateIdException | AuthenticationException | ParseException e11) {
                         registry = null;

@@ -1,10 +1,14 @@
 /**
- * Copyright (c) 2010-2018 by the respective copyright holders.
+ * Copyright (c) 2010-2019 Contributors to the openHAB project
  *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * See the NOTICE file(s) distributed with this work for additional
+ * information.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0
+ *
+ * SPDX-License-Identifier: EPL-2.0
  */
 package org.openhab.binding.ring.handler;
 
@@ -14,6 +18,8 @@ import java.util.concurrent.TimeUnit;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
+import org.openhab.binding.ring.internal.RingDeviceRegistry;
+import org.openhab.binding.ring.internal.errors.DeviceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,7 +78,8 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
                 try {
                     minuteTick();
                 } catch (Exception e) {
-                    logger.debug("Exception occurred during execution: {}", e.getMessage(), e);
+                    logger.debug("Exception occurred during execution of startAutomaticRefresh(): {}", e.getMessage(),
+                            e);
                 }
             }
         };
@@ -94,6 +101,18 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
     @Override
     public void dispose() {
         stopAutomaticRefresh();
+    }
+
+    @Override
+    public void handleRemoval() {
+        String id = getThing().getUID().getId();
+        RingDeviceRegistry registry = RingDeviceRegistry.getInstance();
+        try {
+            registry.removeRingDevice(id);
+        } catch (DeviceNotFoundException e) {
+            // TODO Auto-generated catch block
+            logger.debug("Exception occurred during execution of handleRemoval(): {}", e.getMessage(), e);
+        }
     }
 
 }
