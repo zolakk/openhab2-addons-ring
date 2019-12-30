@@ -45,7 +45,7 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
      *
      * @param thing
      */
-    public AbstractRingHandler(Thing thing) {
+    public AbstractRingHandler(final Thing thing) {
         super(thing);
         status = OnOffType.OFF;
         enabled = OnOffType.ON;
@@ -58,8 +58,7 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
     }
 
     /**
-     * Refresh the state of channels that may have changed by
-     * (re-)initialization.
+     * Refresh the state of channels that may have changed by (re-)initialization.
      */
     protected abstract void refreshState();
 
@@ -71,13 +70,13 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
     /**
      * Check every 60 seconds if one of the alarm times is reached.
      */
-    protected void startAutomaticRefresh(int refreshInterval) {
-        Runnable runnable = new Runnable() {
+    protected void startAutomaticRefresh(final int refreshInterval) {
+        final Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 try {
                     minuteTick();
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     logger.debug("Exception occurred during execution of startAutomaticRefresh(): {}", e.getMessage(),
                             e);
                 }
@@ -105,11 +104,11 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
 
     @Override
     public void handleRemoval() {
-        String id = getThing().getUID().getId();
-        RingDeviceRegistry registry = RingDeviceRegistry.getInstance();
+        final String id = getThing().getUID().getId();
+        final RingDeviceRegistry registry = RingDeviceRegistry.getInstance();
         try {
             registry.removeRingDevice(id);
-        } catch (DeviceNotFoundException e) {
+        } catch (final DeviceNotFoundException e) {
             // TODO Auto-generated catch block
             logger.debug("Exception occurred during execution of handleRemoval(): {}", e.getMessage(), e);
         }
