@@ -96,7 +96,7 @@ public class RestClient {
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.setUseCaches(false);
-            conn.setRequestProperty("User-Agent", "Dalvik/1.6.0 (Linux; Android 4.4.4; Build/KTU84Q)");
+            conn.setRequestProperty("User-Agent", "OpenHAB Ring Binding");
             conn.setRequestProperty("Authorization", "Bearer " + oauth_token);
             conn.setHostnameVerifier(new HostnameVerifier() {
                 @Override
@@ -166,15 +166,15 @@ public class RestClient {
      * @return the servers response
      * @throws AuthenticationException
      */
-    private String getRequest(String resourceUrl, String data) throws AuthenticationException {
+    private String getRequest(String resourceUrl, Profile profile) throws AuthenticationException {
         String result = null;
         try {
             StringBuilder output = new StringBuilder();
-            URL url = new URL(resourceUrl + "?" + data);
+            URL url = new URL(resourceUrl);// + "?" + data);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.setUseCaches(false);
-            conn.setRequestProperty("User-Agent", "Dalvik/1.6.0 (Linux; Android 4.4.4; Build/KTU84Q)");
+            conn.setRequestProperty("User-Agent", "OpenHAB Ring Binding");
             conn.setHostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -201,8 +201,9 @@ public class RestClient {
             conn.setRequestMethod(METHOD_GET);
 
             conn.setRequestProperty("cache-control", "no-cache");
-            // conn.setRequestProperty("Content-type", "application/json");
-            // conn.setRequestProperty("Content-length", "" + postDataLength);
+            conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("authorization", "Bearer " + profile.getAccessToken());
+
             conn.setDoOutput(true);
             conn.setConnectTimeout(12000);
 
@@ -247,13 +248,15 @@ public class RestClient {
      * @throws AuthenticationException
      * @throws ParseException
      */
-    public Profile getAuthenticatedProfile(String username, String password, String hardwareId)
+    public Profile getAuthenticatedProfile(String username, String password, String refreshToken, String hardwareId)
             throws AuthenticationException, ParseException {
-        JSONObject oauthToken = get_oauth_token(username, password);
+
+        JSONObject oauthToken = get_oauth_token(username, password, refreshToken);
         String jsonResult = postRequest(ApiConstants.URL_SESSION, DataFactory.getSessionParams(hardwareId),
                 oauthToken.get("access_token").toString());
         JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
-        return new Profile((JSONObject) obj.get("profile"), oauthToken.get("refresh_token").toString());
+        return new Profile((JSONObject) obj.get("profile"), oauthToken.get("refresh_token").toString(),
+                oauthToken.get("access_token").toString());
     }
 
     /**
@@ -265,7 +268,7 @@ public class RestClient {
      * @throws AuthenticationException
      * @throws ParseException
      */
-    private JSONObject get_oauth_token(String username, String password)
+    private JSONObject get_oauth_token(String username, String password, String refreshToken)
             throws AuthenticationException, ParseException {
 
         String result = null;
@@ -275,16 +278,20 @@ public class RestClient {
             Map<String, String> map = new HashMap<String, String>();
 
             map.put("client_id", "ring_official_android");
-            map.put("grant_type", "password");
             map.put("scope", "client");
-            map.put("username", username);
-            map.put("password", password);
-
+            if (refreshToken == null || refreshToken == "") {
+                map.put("grant_type", "password");
+                map.put("username", username);
+                map.put("password", password);
+            } else {
+                map.put("grant_type", "refresh_token");
+                map.put("refresh_token", refreshToken);
+            }
             URL url = new URL(resourceUrl);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.setUseCaches(false);
-            conn.setRequestProperty("User-Agent", "Dalvik/1.6.0 (Linux; Android 4.4.4; Build/KTU84Q)");
+            conn.setRequestProperty("User-Agent", "OpenHAB Ring Binding");
             conn.setHostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -381,7 +388,7 @@ public class RestClient {
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.setUseCaches(false);
-            conn.setRequestProperty("User-Agent", "Dalvik/1.6.0 (Linux; Android 4.4.4; Build/KTU84Q)");
+            conn.setRequestProperty("User-Agent", "OpenHAB Ring Binding");
             conn.setHostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -457,7 +464,7 @@ public class RestClient {
      */
     public RingDevices getRingDevices(Profile profile, RingAccount ringAccount)
             throws ParseException, AuthenticationException {
-        String jsonResult = getRequest(ApiConstants.URL_DEVICES, DataFactory.getDevicesParams(profile));
+        String jsonResult = getRequest(ApiConstants.URL_DEVICES, profile);// DataFactory.getDevicesParams(profile));
         JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
         return new RingDevices(obj, ringAccount);
     }
@@ -473,7 +480,8 @@ public class RestClient {
      */
     public synchronized List<RingEvent> getHistory(Profile profile, int limit)
             throws AuthenticationException, ParseException {
-        String jsonResult = getRequest(ApiConstants.URL_HISTORY, DataFactory.getHistoryParams(profile, limit));
+        String jsonResult = getRequest(ApiConstants.URL_HISTORY, profile);// DataFactory.getHistoryParams(profile,
+                                                                          // limit));
         JSONArray obj = (JSONArray) new JSONParser().parse(jsonResult);
         List<RingEvent> result = new ArrayList<>(limit);
         for (Object jsonEvent : obj.toArray()) {

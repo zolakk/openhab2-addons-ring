@@ -49,6 +49,7 @@ import org.openhab.binding.ring.internal.errors.DuplicateIdException;
  * sent to one of the channels.
  *
  * @author Wim Vissers - Initial contribution
+ * @author Peter Mietlowski - oAuth upgrade and additional maintenance
  */
 public class AccountHandler extends AbstractRingHandler implements RingAccount {
 
@@ -175,6 +176,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         String username = (String) config.get("username");
         String password = (String) config.get("password");
         String hardwareId = (String) config.get("hardwareId");
+        String refreshToken = (String) config.get("refreshToken");
 
         try {
             if (hardwareId.isEmpty()) {
@@ -191,7 +193,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             }
 
             restClient = new RestClient();
-            userProfile = restClient.getAuthenticatedProfile(username, password, hardwareId);
+            userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, hardwareId);
 
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
         } catch (AuthenticationException ex) {
@@ -232,10 +234,11 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                 String username = (String) config.get("username");
                 String password = (String) config.get("password");
                 String hardwareId = (String) config.get("hardwareId");
+                String refreshToken = (String) config.get("refreshToken");
+
                 try {
                     // restClient = new RestClient();
-                    userProfile = restClient.getAuthenticatedProfile(username, password, hardwareId);
-
+                    userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, hardwareId);
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING,
                             "Retrieving device list");
                 } catch (AuthenticationException ex) {

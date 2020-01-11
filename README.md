@@ -51,14 +51,15 @@ Todo: Move these to the device thing
 | Battery level    | Number    | Battery level in %  |
 
 ## Full Example
+NOTE: Replace <ring_device_id> with a valid ring device ID when manually configuring. The easiest way to currently get that is to define the account thing and pull the device ID from the last event channel.
 
 ring.things:
 
 ```java
 ring:account:ringAccount "Ring Account"     [ username="user@domain.com", password="XXXXXXX", hardwareId="AA-BB-CC-DD-EE-FF", refreshInterval=5 ]
-ring:doorbell:1          "Ring Doorbell"    [ refreshInterval=5, offOffset=0 ]
-ring:chime:1             "Ring Chime"       [ refreshInterval=5, offOffset=0 ]
-ring:stickup:1           "Ring Stickup Camera"       [ refreshInterval=5, offOffset=0 ]
+ring:doorbell:<ring_device_id>          "Ring Doorbell"    [ refreshInterval=5, offOffset=0 ]
+ring:chime:<ring_device_id>             "Ring Chime"       [ refreshInterval=5, offOffset=0 ]
+ring:stickup:<ring_device_id>           "Ring Stickup Camera"       [ refreshInterval=5, offOffset=0 ]
 ```
 
 ring.items:
@@ -72,15 +73,15 @@ String     RingEventKind                  "Ring Event Kind"                 { ch
 String     RingEventDeviceID              "Ring Device ID"                  { channel="ring:account:ringAccount:event#doorbotId" }
 String     RingEventDeviceDescription     "Ring Device Description"         { channel="ring:account:ringAccount:event#doorbotDescription" }
 
-Switch     RingDoorbellStatus             "Ring Doorbell Status"            { channel="ring:doorbell:1:control#status" }
-Switch     RingDoorbellEnabled            "Ring Doorbell Polling Enabled"   { channel="ring:doorbell:1:control#enabled" }
-Number     RingDoorbellBattery            "Ring Doorbell Battery [%s]%"     { channel="ring:doorbell:1:status#battery"}
+Switch     RingDoorbellStatus             "Ring Doorbell Status"            { channel="ring:doorbell:<ring_device_id>:control#status" }
+Switch     RingDoorbellEnabled            "Ring Doorbell Polling Enabled"   { channel="ring:doorbell:<ring_device_id>:control#enabled" }
+Number     RingDoorbellBattery            "Ring Doorbell Battery [%s]%"     { channel="ring:doorbell:<ring_device_id>:status#battery"}
 
-Switch     RingChimeStatus                "Ring Chime Status"               { channel="ring:chime:1:control#status" }
-Switch     RingChimeEnabled               "Ring Chime Polling Enabled"      { channel="ring:chime:1:control#enabled" }
+Switch     RingChimeStatus                "Ring Chime Status"               { channel="ring:chime:<ring_device_id>:control#status" }
+Switch     RingChimeEnabled               "Ring Chime Polling Enabled"      { channel="ring:chime:<ring_device_id>:control#enabled" }
 
-Switch     RingStickupStatus             "Ring Stickup Status"            { channel="ring:stickup:1:control#status" }
-Switch     RingStickupEnabled            "Ring Stickup Polling Enabled"   { channel="ring:stickup:1:control#enabled" }
-Number     RingStickupBattery            "Ring Stickup Battery [%s]%"     { channel="ring:stickup:1:status#battery"}
+Switch     RingStickupStatus             "Ring Stickup Status"            { channel="ring:stickup:<ring_device_id>:control#status" }
+Switch     RingStickupEnabled            "Ring Stickup Polling Enabled"   { channel="ring:stickup:<ring_device_id>:control#enabled" }
+Number     RingStickupBattery            "Ring Stickup Battery [%s]%"     { channel="ring:stickup:<ring_device_id>:status#battery"}
 
 ```

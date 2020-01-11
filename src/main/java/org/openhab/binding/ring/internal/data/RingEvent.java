@@ -12,6 +12,9 @@
  */
 package org.openhab.binding.ring.internal.data;
 
+import java.time.ZonedDateTime;
+
+import org.eclipse.smarthome.core.library.types.DateTimeType;
 import org.json.simple.JSONObject;
 import org.openhab.binding.ring.internal.ApiConstants;
 
@@ -74,7 +77,10 @@ public class RingEvent {
      */
     @SuppressWarnings("unchecked")
     public String getCreatedAt() {
-        return jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString();
+        ZonedDateTime zoned = ZonedDateTime
+                .parse(jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString());
+        DateTimeType dt = new DateTimeType(zoned);
+        return dt.toString();// jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString();
     }
 
     /**

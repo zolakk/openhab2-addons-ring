@@ -6,7 +6,6 @@
 
 	<name>Ring Binding</name>
 	<description>This is the binding for ring.com devices like the Video Doorbell</description>
-	<author>Wim Vissers</author>
-
+	<author>Wim Vissers,Peter Mietlowski</author>
 </binding:binding>
 

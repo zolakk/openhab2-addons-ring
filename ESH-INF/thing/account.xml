@@ -14,13 +14,18 @@
             <channel-group id="event" typeId="eventGroup"/>
         </channel-groups>
         <config-description>
-            <parameter name="username" type="text" required="true">
+            <parameter name="username" type="text" required="false">
                 <label>The Ring account's user name</label>
-                <description>Enter the user name you used to subscribe to the Ring services</description>
+                <description>Enter the user name you used to subscribe to the Ring services. If using 2 factor authentication, leave this blank and enter the refresh token instead.</description>
             </parameter>
-            <parameter name="password" type="text" required="true">
+            <parameter name="password" type="text" required="false">
                 <label>The Ring account's password</label>
-                <description>Enter the password you used to subscribe to the Ring services</description>
+                <description>Enter the password you used to subscribe to the Ring services. If using 2 factor authentication, leave this blank and enter the refresh token instead.</description>
+                <context>password</context>
+            </parameter>
+            <parameter name="refreshToken" type="text" required="false">
+                <label>The Ring account's refresh token</label>
+                <description>Enter the refresh token from Ring. Use this instead of username/password when using 2 factor authentication, or if you don't wish to save the username and password in OpenHAB</description>
                 <context>password</context>
             </parameter>
             <parameter name="hardwareId" type="text">
