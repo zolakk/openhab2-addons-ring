@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -14,7 +14,6 @@ package org.openhab.binding.ring.internal.data;
 
 import java.time.ZonedDateTime;
 
-import org.eclipse.smarthome.core.library.types.DateTimeType;
 import org.json.simple.JSONObject;
 import org.openhab.binding.ring.internal.ApiConstants;
 
@@ -22,6 +21,7 @@ import org.openhab.binding.ring.internal.ApiConstants;
  *
  * @author Wim Vissers - Initial contribution
  */
+
 public class RingEvent {
 
     /**
@@ -79,8 +79,9 @@ public class RingEvent {
     public String getCreatedAt() {
         ZonedDateTime zoned = ZonedDateTime
                 .parse(jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString());
-        DateTimeType dt = new DateTimeType(zoned);
-        return dt.toString();// jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString();
+        // DateTimeType dt = new DateTimeType(zoned.toLocalDateTime().toString());
+        // return dt.toString();// jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString();
+        return zoned.toLocalDateTime().toString();
     }
 
     /**

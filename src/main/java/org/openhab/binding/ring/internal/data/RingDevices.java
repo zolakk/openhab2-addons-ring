@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -26,6 +26,7 @@ import org.openhab.binding.ring.internal.RingAccount;
  * @author Wim Vissers - Initial contribution
  * @author Chris Milbert - stickupcam contribution
  */
+
 public class RingDevices {
     private List<Doorbell> doorbells;
     private List<Stickupcam> stickupcams;

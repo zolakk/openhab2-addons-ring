@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -51,6 +51,7 @@ import org.openhab.binding.ring.internal.errors.DuplicateIdException;
  * @author Wim Vissers - Initial contribution
  * @author Peter Mietlowski - oAuth upgrade and additional maintenance
  */
+
 public class AccountHandler extends AbstractRingHandler implements RingAccount {
 
     private // Scheduler
@@ -178,6 +179,8 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         String hardwareId = (String) config.get("hardwareId");
         String refreshToken = (String) config.get("refreshToken");
 
+        String twofactorCode = (String) config.get("twofactorCode");
+
         try {
             if (hardwareId.isEmpty()) {
                 hardwareId = getLocalMAC();
@@ -193,19 +196,30 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             }
 
             restClient = new RestClient();
-            userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, hardwareId);
-
+            userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, twofactorCode,
+                    hardwareId);
+            config.remove("refreshToken");
+            config.put("refreshToken", userProfile.getRefreshToken());
+            updateConfiguration(config);
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
         } catch (AuthenticationException ex) {
-            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials");
+            logger.debug("AuthenticationException when initializing Ring Account handler{}", ex.getMessage());
+            if (ex.getMessage().startsWith("Two factor")) {
+                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR, ex.getMessage());
+            } else {
+                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, ex.getMessage());
+            }
         } catch (ParseException e) {
+            logger.debug("Invalid response from api.ring.com when initializing Ring Account handler{}", e.getMessage());
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                    "Invalid response from api.ring.com.");
+                    "Invalid response from api.ring.com");
         } catch (Exception e) {
+            logger.debug("Initialization failed when initializing Ring Account handler{}", e.getMessage());
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
                     "Initialization failed: " + e.getMessage());
         }
-
+        config.remove("twofactorCode");
+        updateConfiguration(config);
         // Note: When initialization can NOT be done set the status with more details for further
         // analysis. See also class ThingStatusDetail for all available status details.
         // Add a description to give user information to understand why thing does not work
@@ -230,6 +244,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                 refreshRegistry();
                 updateStatus(ThingStatus.ONLINE);
             } catch (AuthenticationException | ParseException e) {
+                logger.debug(
+                        "AuthenticationException in AccountHandler.minuteTick() when trying refreshRegistry, attempting to reconnect {}",
+                        e.getMessage());
                 Configuration config = getThing().getConfiguration();
                 String username = (String) config.get("username");
                 String password = (String) config.get("password");
@@ -238,14 +255,17 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
 
                 try {
                     // restClient = new RestClient();
-                    userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, hardwareId);
-                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING,
-                            "Retrieving device list");
+                    userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, null,
+                            hardwareId);
+                    updateStatus(ThingStatus.ONLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
                 } catch (AuthenticationException ex) {
+                    logger.debug("RestClient reported invalid credentials, marking offline - communication error");
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials");
                 } catch (ParseException e1) {
+                    logger.debug(
+                            "RestClient reported Invalid response from api.ring.com, marking offline - communication error");
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                            "Invalid response from api.ring.com.");
+                            "Invalid response from api.ring.com");
                 } finally {
                     try {
                         refreshRegistry();
@@ -253,7 +273,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                     } catch (DuplicateIdException | AuthenticationException | ParseException e11) {
                         registry = null;
                         updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                                "Invalid response from ring.com.");
+                                "Invalid response from ring.com");
+                        logger.debug(
+                                "RestClient reported Invalid response from api.ring.com when retrying refreshRegistry for the second time, marking offline - communication error");
                     }
                 }
             } catch (DuplicateIdException ignored) {
@@ -266,7 +288,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
 
                 String id = lastEvents == null || lastEvents.isEmpty() ? "?" : lastEvents.get(0).getEventId();
                 lastEvents = restClient.getHistory(userProfile, 5);
-                if (lastEvents != null && !lastEvents.isEmpty() && !lastEvents.get(0).getEventId().equals(id)) {
+                if (lastEvents != null && !lastEvents.isEmpty()) {// && !lastEvents.get(0).getEventId().equals(id)) {
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_URL), RefreshType.REFRESH);
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_CREATED_AT), RefreshType.REFRESH);
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_KIND), RefreshType.REFRESH);
@@ -278,6 +300,8 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                 registry = null;
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
                         "Invalid response from ring.com");
+                logger.debug(
+                        "RestClient reported Invalid response from api.ring.com when retrying refreshRegistry for the second time, marking offline - communication error");
             }
         }
     }
@@ -313,7 +337,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         // get local ip from OH system settings
         String localIP = networkAddressService.getPrimaryIpv4HostAddress();
         if ((localIP == null) || (localIP.isEmpty())) {
-            logger.info("No local IP selected in openHAB system configuration");
+            logger.debug("No local IP selected in openHAB system configuration");
             return "";
         }
 
@@ -328,7 +352,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                 sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
             }
             String localMAC = sb.toString();
-            logger.info("Local IP address='{}', local MAC address = '{}'", localIP, localMAC);
+            logger.debug("Local IP address='{}', local MAC address = '{}'", localIP, localMAC);
             return localMAC;
         }
         return "";

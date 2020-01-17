@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -17,6 +17,7 @@ import org.openhab.binding.ring.internal.ApiConstants;
 /**
  * @author Wim Vissers - Initial contribution
  */
+
 public class DataFactory {
     public static String getOAUTH_DATA(String username, String password) {
         /*
@@ -84,12 +85,12 @@ public class DataFactory {
     /**
      * Construct the url to retrieve the recorded video.
      *
-     * @param profile   the user profile for the authentication token.
+     * @param profile the user profile for the authentication token.
      * @param ringEvent the ring event for the id.
      * @return a url to the recorded video.
      */
     public static String getDingVideoUrl(Profile profile, RingEvent ringEvent) {
-        return "Not implemented by binding (yet)";
+        return "Not implemented by binding";
         // StringBuilder b = new StringBuilder();
         // b.append(ApiConstants.URL_RECORDING_START).append(ringEvent.getEventId()).append(ApiConstants.URL_RECORDING_END)
         // .append("?api_version=").append(ApiConstants.API_VERSION).append("&auth_token=")

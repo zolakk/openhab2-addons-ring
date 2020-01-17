@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.2.0" immediate="true" name="org.openhab.binding.ring.internal.RingHandlerFactory" configuration-pid="binding.ring">
-    <service servicefactory="false">
-        <provide interface="org.eclipse.smarthome.core.thing.binding.ThingHandlerFactory"/>
-        <provide interface="org.openhab.binding.ring.internal.RingHandlerFactory"/>
-    </service>
-    <reference name="NetworkAddressService" interface="org.eclipse.smarthome.core.net.NetworkAddressService" cardinality="1..1" policy="static" bind="setNetworkAddressService" unbind="unsetNetworkAddressService"/>
-    <implementation class="org.openhab.binding.ring.internal.RingHandlerFactory"/>
-</scr:component>

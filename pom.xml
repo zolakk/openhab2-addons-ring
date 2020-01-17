@@ -10,5 +10,5 @@
   </parent>
 
   <artifactId>org.openhab.binding.ring</artifactId>
-  <name>Ring Binding</name>
+  <name>openHAB Add-ons :: Bundles :: Ring Binding</name>
 </project>

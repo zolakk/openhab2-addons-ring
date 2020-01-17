@@ -15,7 +15,7 @@
 *.dmg
 *.gz
 *.iso
-#*.jar
+*.jar
 *.rar
 *.tar
 *.zip
@@ -35,16 +35,6 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-#/target/
+/target/
 /.apt_generated/
 /.apt_generated_tests/
-pom - Copy.xml
-.settings/org.eclipse.core.resources.prefs
-.settings/org.eclipse.jdt.apt.core.prefs
-.factorypath
-.vscode/launch.json
-.vscode/tasks.json
-.classpath
-.classpath
-.settings/org.eclipse.core.resources.prefs
-.settings/org.eclipse.jdt.core.prefs

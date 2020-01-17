@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -29,6 +29,8 @@ import org.openhab.binding.ring.handler.DoorbellHandler;
 import org.openhab.binding.ring.handler.StickupcamHandler;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The {@link RingHandlerFactory} is responsible for creating things and thing
@@ -37,11 +39,13 @@ import org.osgi.service.component.annotations.Reference;
  * @author Wim Vissers - Initial contribution
  * @author Chris Milbert - Stickupcam contribution
  */
+
 @Component(service = { ThingHandlerFactory.class,
         RingHandlerFactory.class }, immediate = true, configurationPid = "binding.ring")
 public class RingHandlerFactory extends BaseThingHandlerFactory {
-
+    private Logger logger = LoggerFactory.getLogger(RingHandlerFactory.class);
     private final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS;
+
     private NetworkAddressService networkAddressService;
 
     public RingHandlerFactory() {
@@ -61,7 +65,7 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
     protected ThingHandler createHandler(Thing thing) {
 
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
-
+        logger.info("createHandler thingType: {}", thingTypeUID);
         if (thingTypeUID.equals(THING_TYPE_ACCOUNT)) {
             return new AccountHandler(thing, networkAddressService);
         } else if (thingTypeUID.equals(THING_TYPE_DOORBELL)) {
