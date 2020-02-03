@@ -162,17 +162,20 @@
 		<item-type>DateTime</item-type>
 		<label>When the event was created</label>
 		<description>The date and time the event was created</description>
+		<state pattern="%1$tF %1$tR" readOnly="true"/>
 	</channel-type>
 	<channel-type id="kind">
 		<item-type>String</item-type>
 		<label>The kind of event</label>
 		<description>The kind of event, usually 'motion' or 'ding'</description>
 	</channel-type>
+	<!--
 	<channel-type id="status">
 		<item-type>Switch</item-type>
 		<label>Status</label>
 		<description>On or off</description>
 	</channel-type>
+	-->
 	<channel-type id="enabled">
 		<item-type>Switch</item-type>
 		<label>Account Polling Enabled (on=yes, off=no)</label>

@@ -48,6 +48,7 @@ import org.openhab.binding.ring.internal.data.Profile;
 import org.openhab.binding.ring.internal.data.RingDevices;
 import org.openhab.binding.ring.internal.data.RingEvent;
 import org.openhab.binding.ring.internal.errors.AuthenticationException;
+//import org.openhab.io.net.http.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -475,42 +476,6 @@ public class RestClient {
     }
 
     /**
-     * Get the RingDevices instance, given the authenticated Profile.
-     *
-     * @param profile the Profile previously retrieved when authenticating.
-     * @return the RingDevices instance filled with all available data.
-     * @throws AuthenticationException when request is invalid.
-     * @throws ParseException when response is invalid JSON.
-     */
-    public RingDevices getRingDevices(Profile profile, RingAccount ringAccount)
-            throws ParseException, AuthenticationException {
-        String jsonResult = getRequest(ApiConstants.URL_DEVICES, profile);// DataFactory.getDevicesParams(profile));
-        JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
-        return new RingDevices(obj, ringAccount);
-    }
-
-    /**
-     * Get a List with the last recorded events, newest on top.
-     *
-     * @param profile the Profile previously retrieved when authenticating.
-     * @param limit the maximum number of events.
-     * @return
-     * @throws AuthenticationException
-     * @throws ParseException
-     */
-    public synchronized List<RingEvent> getHistory(Profile profile, int limit)
-            throws AuthenticationException, ParseException {
-        String jsonResult = getRequest(ApiConstants.URL_HISTORY, profile);// DataFactory.getHistoryParams(profile,
-                                                                          // limit));
-        JSONArray obj = (JSONArray) new JSONParser().parse(jsonResult);
-        List<RingEvent> result = new ArrayList<>(limit);
-        for (Object jsonEvent : obj.toArray()) {
-            result.add(new RingEvent((JSONObject) jsonEvent));
-        }
-        return result;
-    }
-
-    /**
      * Post data to given url
      *
      * @param url
@@ -620,4 +585,58 @@ public class RestClient {
         }
         return result;
     }
+
+    /**
+     * Get the RingDevices instance, given the authenticated Profile.
+     *
+     * @param profile the Profile previously retrieved when authenticating.
+     * @return the RingDevices instance filled with all available data.
+     * @throws AuthenticationException when request is invalid.
+     * @throws ParseException when response is invalid JSON.
+     */
+    public RingDevices getRingDevices(Profile profile, RingAccount ringAccount)
+            throws ParseException, AuthenticationException {
+        String jsonResult = getRequest(ApiConstants.URL_DEVICES, profile);// DataFactory.getDevicesParams(profile));
+        JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
+        return new RingDevices(obj, ringAccount);
+    }
+
+    /**
+     * Get a List with the last recorded events, newest on top.
+     *
+     * @param profile the Profile previously retrieved when authenticating.
+     * @param limit the maximum number of events.
+     * @return
+     * @throws AuthenticationException
+     * @throws ParseException
+     */
+    public synchronized List<RingEvent> getHistory(Profile profile, int limit)
+            throws AuthenticationException, ParseException {
+        String jsonResult = getRequest(ApiConstants.URL_HISTORY, profile);// DataFactory.getHistoryParams(profile,
+                                                                          // limit));
+        JSONArray obj = (JSONArray) new JSONParser().parse(jsonResult);
+        List<RingEvent> result = new ArrayList<>(limit);
+        for (Object jsonEvent : obj.toArray()) {
+            result.add(new RingEvent((JSONObject) jsonEvent));
+        }
+        return result;
+    }
+
+    public String getRecordingURL(String recordingURL, Profile profile) {
+
+        try {
+            String jsonResult = getRequest(recordingURL, profile);
+            JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
+            return obj.get("url").toString();
+        } catch (AuthenticationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

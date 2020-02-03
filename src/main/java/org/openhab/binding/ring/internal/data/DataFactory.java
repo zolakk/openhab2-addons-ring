@@ -90,12 +90,13 @@ public class DataFactory {
      * @return a url to the recorded video.
      */
     public static String getDingVideoUrl(Profile profile, RingEvent ringEvent) {
-        return "Not implemented by binding";
-        // StringBuilder b = new StringBuilder();
-        // b.append(ApiConstants.URL_RECORDING_START).append(ringEvent.getEventId()).append(ApiConstants.URL_RECORDING_END)
+        // return "Not implemented by binding";
+        StringBuilder b = new StringBuilder();
+        b.append(ApiConstants.URL_RECORDING_START).append(ringEvent.getEventId())
+                .append(ApiConstants.URL_RECORDING_END);
         // .append("?api_version=").append(ApiConstants.API_VERSION).append("&auth_token=")
         // .append(profile.getAuthenticationToken());
-        // return b.toString();
+        return b.toString();
     }
 
 }

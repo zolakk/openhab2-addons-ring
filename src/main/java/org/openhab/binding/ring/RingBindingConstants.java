@@ -41,5 +41,4 @@ public class RingBindingConstants {
     public final static String CHANNEL_EVENT_KIND = "event#kind";
     public final static String CHANNEL_EVENT_DOORBOT_ID = "event#doorbotId";
     public final static String CHANNEL_EVENT_DOORBOT_DESCRIPTION = "event#doorbotDescription";
-
 }

@@ -12,7 +12,10 @@
  */
 package org.openhab.binding.ring.internal.data;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.json.simple.JSONObject;
 import org.openhab.binding.ring.internal.ApiConstants;
@@ -77,11 +80,11 @@ public class RingEvent {
      */
     @SuppressWarnings("unchecked")
     public String getCreatedAt() {
-        ZonedDateTime zoned = ZonedDateTime
-                .parse(jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString());
-        // DateTimeType dt = new DateTimeType(zoned.toLocalDateTime().toString());
-        // return dt.toString();// jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString();
-        return zoned.toLocalDateTime().toString();
+        String eventTime = jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString();
+        ZonedDateTime gmtTime = LocalDateTime
+                .parse(eventTime, DateTimeFormatter.ofPattern("yyy-MM-dd'T'HH:mm:ss.SSS'Z'")).atZone(ZoneId.of("GMT"));
+        LocalDateTime localTime = gmtTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+        return localTime.toString();
     }
 
     /**

@@ -95,7 +95,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                 case CHANNEL_EVENT_URL:
                     if (eventListOk) {
                         updateState(channelUID,
-                                new StringType(DataFactory.getDingVideoUrl(userProfile, lastEvents.get(eventIndex))));
+                                new StringType(restClient.getRecordingURL(
+                                        DataFactory.getDingVideoUrl(userProfile, lastEvents.get(eventIndex)),
+                                        userProfile)));
                     }
                     break;
                 case CHANNEL_EVENT_CREATED_AT:
@@ -119,9 +121,11 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                                 new StringType(lastEvents.get(eventIndex).getDoorbot().getDescription()));
                     }
                     break;
-                case CHANNEL_CONTROL_STATUS:
-                    updateState(channelUID, status);
-                    break;
+                /*
+                 * case CHANNEL_CONTROL_STATUS:
+                 * updateState(channelUID, status);
+                 * break;
+                 */
                 case CHANNEL_CONTROL_ENABLED:
                     updateState(channelUID, enabled);
                     break;
@@ -133,10 +137,12 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         } else if (command instanceof OnOffType) {
             OnOffType xcommand = (OnOffType) command;
             switch (channelUID.getId()) {
-                case CHANNEL_CONTROL_STATUS:
-                    status = xcommand;
-                    updateState(channelUID, status);
-                    break;
+                /*
+                 * case CHANNEL_CONTROL_STATUS:
+                 * status = xcommand;
+                 * updateState(channelUID, status);
+                 * break;
+                 */
                 case CHANNEL_CONTROL_ENABLED:
                     if (!enabled.equals(xcommand)) {
                         enabled = xcommand;
