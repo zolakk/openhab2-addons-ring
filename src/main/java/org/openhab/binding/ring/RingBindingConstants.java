@@ -41,4 +41,11 @@ public class RingBindingConstants {
     public final static String CHANNEL_EVENT_KIND = "event#kind";
     public final static String CHANNEL_EVENT_DOORBOT_ID = "event#doorbotId";
     public final static String CHANNEL_EVENT_DOORBOT_DESCRIPTION = "event#doorbotDescription";
+
+    public static final String HTTP_METHOD_GET = "GET";
+    public static final String HTTP_METHOD_PUT = "PUT";
+    public static final String HTTP_METHOD_POST = "POST";
+    public static final String HTTP_METHOD_DELETE = "DELETE";
+    public static final String SERVLET_VIDEO_PATH = "/ring/video";
+    public static final String SERVLET_VIDEO_MIME_TYPE = "video/mp4";
 }

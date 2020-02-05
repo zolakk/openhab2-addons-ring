@@ -31,7 +31,7 @@ import org.openhab.binding.ring.internal.errors.IllegalDeviceClassException;
 /**
  * The handler for a Ring Video Stickup Cam.
  *
- * @author Chris Milbert - Stickupcam contribution
+ * @author Chris Milbert - Initial contribution
  *
  */
 

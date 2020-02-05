@@ -18,7 +18,7 @@ import org.eclipse.smarthome.core.thing.ThingUID;
 import org.json.simple.JSONObject;
 
 /**
- * @author Chris Milbert - Stickupcam contribution
+ * @author Chris Milbert - Initial contribution
  */
 
 public class Stickupcam extends AbstractRingDevice {

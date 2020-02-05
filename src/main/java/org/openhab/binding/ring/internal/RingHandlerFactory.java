@@ -17,6 +17,7 @@ import static org.openhab.binding.ring.RingBindingConstants.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.smarthome.core.net.NetworkAddressService;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
@@ -29,6 +30,9 @@ import org.openhab.binding.ring.handler.DoorbellHandler;
 import org.openhab.binding.ring.handler.StickupcamHandler;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.http.HttpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,6 +51,9 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
     private final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS;
 
     private NetworkAddressService networkAddressService;
+
+    @Nullable
+    HttpService httpService;
 
     public RingHandlerFactory() {
         SUPPORTED_THING_TYPES_UIDS = new HashSet<>();
@@ -67,7 +74,7 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
         logger.info("createHandler thingType: {}", thingTypeUID);
         if (thingTypeUID.equals(THING_TYPE_ACCOUNT)) {
-            return new AccountHandler(thing, networkAddressService);
+            return new AccountHandler(thing, networkAddressService, httpService);
         } else if (thingTypeUID.equals(THING_TYPE_DOORBELL)) {
             return new DoorbellHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_CHIME)) {
@@ -76,6 +83,15 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
             return new StickupcamHandler(thing);
         }
         return null;
+    }
+
+    @Reference(cardinality = ReferenceCardinality.MANDATORY, policy = ReferencePolicy.DYNAMIC)
+    protected void setHttpService(HttpService httpService) {
+        this.httpService = httpService;
+    }
+
+    protected void unsetHttpService(HttpService httpService) {
+        this.httpService = null;
     }
 
     @Reference

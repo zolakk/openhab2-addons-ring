@@ -76,9 +76,6 @@ public abstract class RingDeviceHandler extends AbstractRingHandler {
         if (command instanceof Number || command instanceof RefreshType || command instanceof IncreaseDecreaseType
                 || command instanceof UpDownType) {
             switch (channelUID.getId()) {
-                case CHANNEL_CONTROL_STATUS:
-                    updateState(channelUID, status);
-                    break;
                 case CHANNEL_CONTROL_ENABLED:
                     updateState(channelUID, enabled);
                     break;
@@ -93,10 +90,6 @@ public abstract class RingDeviceHandler extends AbstractRingHandler {
         } else if (command instanceof OnOffType) {
             OnOffType xcommand = (OnOffType) command;
             switch (channelUID.getId()) {
-                case CHANNEL_CONTROL_STATUS:
-                    status = xcommand;
-                    updateState(channelUID, status);
-                    break;
                 case CHANNEL_CONTROL_ENABLED:
                     if (!enabled.equals(xcommand)) {
                         enabled = xcommand;

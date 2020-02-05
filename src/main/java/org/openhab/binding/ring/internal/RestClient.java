@@ -503,13 +503,11 @@ public class RestClient {
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.setUseCaches(false);
-            // conn.setRequestProperty("content-type", "application/json");
             conn.setRequestProperty("X-API-LANG", "en");
             conn.setRequestProperty("Content-length", "gzip, deflate");
             conn.setRequestProperty("2fa-support", "true");
             conn.setRequestProperty("2fa-code", authCode);
             conn.setRequestProperty("hardware_id", hardwareId);
-            // conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded; charset: UTF-8");
             conn.setRequestProperty("User-Agent", ApiConstants.API_USER_AGENT);
             conn.setHostnameVerifier(new HostnameVerifier() {
                 @Override
@@ -543,7 +541,6 @@ public class RestClient {
             byte[] out = pb.toString().getBytes(StandardCharsets.UTF_8);
             int length = out.length;
 
-            // conn.setFixedLengthStreamingMode(length);
             conn.connect();
             OutputStream os = conn.getOutputStream();
             os.write(out);
@@ -574,11 +571,9 @@ public class RestClient {
 
             JSONObject refToken = (JSONObject) new JSONParser().parse(result);
             result = refToken.get("refresh_token").toString();
-            // oauth_token = (JSONObject) new JSONParser().parse(result);
             logger.trace("RestApi response: {}.", result);
         } catch (IOException | KeyManagementException | NoSuchAlgorithmException ex) {
-            logger.error("ERROR!", ex);
-            // ex.printStackTrace();
+            logger.error("Error getting auth code!", ex);
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             logger.error("Error parsing refToken", e);
@@ -612,8 +607,9 @@ public class RestClient {
      */
     public synchronized List<RingEvent> getHistory(Profile profile, int limit)
             throws AuthenticationException, ParseException {
-        String jsonResult = getRequest(ApiConstants.URL_HISTORY, profile);// DataFactory.getHistoryParams(profile,
-                                                                          // limit));
+
+        String jsonResult = getRequest(ApiConstants.URL_HISTORY + "?limit=" + limit, profile);
+        // limit));
         JSONArray obj = (JSONArray) new JSONParser().parse(jsonResult);
         List<RingEvent> result = new ArrayList<>(limit);
         for (Object jsonEvent : obj.toArray()) {
@@ -622,19 +618,20 @@ public class RestClient {
         return result;
     }
 
-    public String getRecordingURL(String recordingURL, Profile profile) {
+    public String getRecordingURL(String eventId, Profile profile) {
 
         try {
-            String jsonResult = getRequest(recordingURL, profile);
+            StringBuilder vidUrl = new StringBuilder();
+            vidUrl.append(ApiConstants.URL_RECORDING_START).append(eventId).append(ApiConstants.URL_RECORDING_END);
+
+            String jsonResult = getRequest(vidUrl.toString(), profile);
             JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
             return obj.get("url").toString();
         } catch (AuthenticationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("Authentication exception in getRecordingURL", e);
             return null;
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("Parse exception in getRecordingURL!", e);
             return null;
         }
     }

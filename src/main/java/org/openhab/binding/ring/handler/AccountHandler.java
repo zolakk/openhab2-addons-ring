@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.library.types.DateTimeType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
@@ -37,12 +38,13 @@ import org.json.simple.parser.ParseException;
 import org.openhab.binding.ring.internal.RestClient;
 import org.openhab.binding.ring.internal.RingAccount;
 import org.openhab.binding.ring.internal.RingDeviceRegistry;
-import org.openhab.binding.ring.internal.data.DataFactory;
+import org.openhab.binding.ring.internal.RingVideoServlet;
 import org.openhab.binding.ring.internal.data.Profile;
 import org.openhab.binding.ring.internal.data.RingDevices;
 import org.openhab.binding.ring.internal.data.RingEvent;
 import org.openhab.binding.ring.internal.errors.AuthenticationException;
 import org.openhab.binding.ring.internal.errors.DuplicateIdException;
+import org.osgi.service.http.HttpService;
 
 /**
  * The {@link RingDoorbellHandler} is responsible for handling commands, which are
@@ -57,7 +59,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
     private // Scheduler
     ScheduledFuture<?> jobTokenRefresh = null;
     private Runnable runnableToken = null;
-
+    private @Nullable RingVideoServlet ringVideoServlet;
+    // private HttpService httpService;
+    private @Nullable HttpService httpService;
     /**
      * The user profile retrieved when authenticating.
      */
@@ -81,9 +85,10 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
 
     private NetworkAddressService networkAddressService;
 
-    public AccountHandler(Thing thing, NetworkAddressService networkAddressService) {
+    public AccountHandler(Thing thing, NetworkAddressService networkAddressService, HttpService httpService) {
         super(thing);
         this.networkAddressService = networkAddressService;
+        this.httpService = httpService;
         eventIndex = 0;
     }
 
@@ -94,10 +99,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             switch (channelUID.getId()) {
                 case CHANNEL_EVENT_URL:
                     if (eventListOk) {
-                        updateState(channelUID,
-                                new StringType(restClient.getRecordingURL(
-                                        DataFactory.getDingVideoUrl(userProfile, lastEvents.get(eventIndex)),
-                                        userProfile)));
+                        String localIP = networkAddressService.getPrimaryIpv4HostAddress();
+                        updateState(channelUID, new StringType(
+                                "http://" + localIP + ":8080/ring/video/" + lastEvents.get(eventIndex).getEventId()));
                     }
                     break;
                 case CHANNEL_EVENT_CREATED_AT:
@@ -226,6 +230,11 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         }
         config.remove("twofactorCode");
         updateConfiguration(config);
+
+        if (this.ringVideoServlet == null) {
+            this.ringVideoServlet = new RingVideoServlet(httpService, userProfile);
+        }
+
         // Note: When initialization can NOT be done set the status with more details for further
         // analysis. See also class ThingStatusDetail for all available status details.
         // Add a description to give user information to understand why thing does not work
@@ -260,7 +269,6 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                 String refreshToken = (String) config.get("refreshToken");
 
                 try {
-                    // restClient = new RestClient();
                     userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, null,
                             hardwareId);
                     updateStatus(ThingStatus.ONLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
@@ -290,11 +298,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         } else {
             // Update the events
             try {
-                // restClient.refresh_session(userProfile.getRefreshToken());
-
                 String id = lastEvents == null || lastEvents.isEmpty() ? "?" : lastEvents.get(0).getEventId();
-                lastEvents = restClient.getHistory(userProfile, 5);
-                if (lastEvents != null && !lastEvents.isEmpty()) {// && !lastEvents.get(0).getEventId().equals(id)) {
+                lastEvents = restClient.getHistory(userProfile, 1);
+                if (lastEvents != null && !lastEvents.isEmpty() && !lastEvents.get(0).getEventId().equals(id)) {
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_URL), RefreshType.REFRESH);
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_CREATED_AT), RefreshType.REFRESH);
                     handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_KIND), RefreshType.REFRESH);
