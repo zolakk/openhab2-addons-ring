@@ -12,11 +12,13 @@
  */
 package org.openhab.binding.ring.handler;
 
+import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.Thing;
+import org.eclipse.smarthome.core.thing.ThingStatus;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.openhab.binding.ring.internal.RingDeviceRegistry;
 import org.openhab.binding.ring.internal.errors.DeviceNotFoundException;
@@ -55,6 +57,9 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
     @Override
     public void initialize() {
         logger.debug("Initializing AbstractRingHandler");
+        Map<String, String> properties = editProperties();
+        properties.put(Thing.PROPERTY_SERIAL_NUMBER, getThing().getUID().getId());
+        updateProperties(properties);
         // super.initialize();
     }
 
@@ -84,7 +89,7 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
             }
         };
 
-        refreshJob = scheduler.scheduleAtFixedRate(runnable, 0, refreshInterval, TimeUnit.SECONDS);
+        refreshJob = scheduler.scheduleWithFixedDelay(runnable, 0, refreshInterval, TimeUnit.SECONDS);
         refreshState();
     }
 
@@ -105,6 +110,7 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
 
     @Override
     public void handleRemoval() {
+        updateStatus(ThingStatus.REMOVING);
         final String id = getThing().getUID().getId();
         final RingDeviceRegistry registry = RingDeviceRegistry.getInstance();
         try {
@@ -112,6 +118,8 @@ public abstract class AbstractRingHandler extends BaseThingHandler {
         } catch (final DeviceNotFoundException e) {
             // TODO Auto-generated catch block
             logger.debug("Exception occurred during execution of handleRemoval(): {}", e.getMessage(), e);
+        } finally {
+            updateStatus(ThingStatus.REMOVED);
         }
     }
 

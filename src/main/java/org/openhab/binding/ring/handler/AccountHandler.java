@@ -83,10 +83,24 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
      */
     private int eventIndex;
 
+    /*
+     * The number of video files to keep when auto-downloading
+     */
+    private int videoRetentionCount;
+
+    /*
+     * The path of where to save video files
+     */
+    private String videoStoragePath;
+
     private NetworkAddressService networkAddressService;
 
-    public AccountHandler(Thing thing, NetworkAddressService networkAddressService, HttpService httpService) {
+    private int httpPort;
+
+    public AccountHandler(Thing thing, NetworkAddressService networkAddressService, HttpService httpService,
+            int httpPort) {
         super(thing);
+        this.httpPort = httpPort;
         this.networkAddressService = networkAddressService;
         this.httpService = httpService;
         eventIndex = 0;
@@ -99,9 +113,16 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             switch (channelUID.getId()) {
                 case CHANNEL_EVENT_URL:
                     if (eventListOk) {
+                        String videoFile = restClient.downloadEventVideo(lastEvents.get(eventIndex), userProfile,
+                                videoStoragePath, videoRetentionCount);
                         String localIP = networkAddressService.getPrimaryIpv4HostAddress();
-                        updateState(channelUID, new StringType(
-                                "http://" + localIP + ":8080/ring/video/" + lastEvents.get(eventIndex).getEventId()));
+
+                        if (videoFile.endsWith(".mp4")) {
+                            updateState(channelUID,
+                                    new StringType("http://" + localIP + ":" + httpPort + "/ring/video/" + videoFile));
+                        } else {
+                            updateState(channelUID, new StringType(videoFile));
+                        }
                     }
                     break;
                 case CHANNEL_EVENT_CREATED_AT:
@@ -190,6 +211,8 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         String refreshToken = (String) config.get("refreshToken");
 
         String twofactorCode = (String) config.get("twofactorCode");
+        videoRetentionCount = ((BigDecimal) config.get("videoRetentionCount")).intValueExact();
+        videoStoragePath = (String) config.get("videoStoragePath");
 
         try {
             if (hardwareId.isEmpty()) {
@@ -211,6 +234,13 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             config.remove("refreshToken");
             config.put("refreshToken", userProfile.getRefreshToken());
             updateConfiguration(config);
+            if ((String) config.get("refreshToken") != userProfile.getRefreshToken()) {
+                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
+                        "Error saving refresh token to account Thing. See log for details.");
+                logger.error(
+                        "Error saving refresh token to account Thing. If created with .thing files, add this refreshToken attribute: {}",
+                        userProfile.getRefreshToken());
+            }
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
         } catch (AuthenticationException ex) {
             logger.debug("AuthenticationException when initializing Ring Account handler{}", ex.getMessage());
@@ -232,7 +262,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
         updateConfiguration(config);
 
         if (this.ringVideoServlet == null) {
-            this.ringVideoServlet = new RingVideoServlet(httpService, userProfile);
+            this.ringVideoServlet = new RingVideoServlet(httpService, videoStoragePath);
         }
 
         // Note: When initialization can NOT be done set the status with more details for further
@@ -327,6 +357,9 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             public void run() {
                 try {
                     if (restClient != null) {
+                        if (registry != null) {
+                            refreshRegistry();
+                        }
                         restClient.refresh_session(userProfile.getRefreshToken());
                     }
                 } catch (Exception e) {
@@ -335,7 +368,7 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             }
         };
 
-        jobTokenRefresh = scheduler.scheduleAtFixedRate(runnableToken, 90, refreshInterval, TimeUnit.SECONDS);
+        jobTokenRefresh = scheduler.scheduleWithFixedDelay(runnableToken, 90, refreshInterval, TimeUnit.SECONDS);
     }
 
     protected void stopSessionRefresh() {

@@ -15,18 +15,20 @@ package org.openhab.binding.ring.internal;
 
 import static org.openhab.binding.ring.RingBindingConstants.*;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.openhab.binding.ring.internal.data.Profile;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.http.HttpService;
 import org.slf4j.Logger;
@@ -44,7 +46,7 @@ public class RingVideoServlet extends HttpServlet {
 
     private final Logger logger = LoggerFactory.getLogger(RingVideoServlet.class);
 
-    private Profile profile;
+    private String videoStoragePath;
     /**
      * The RestClient is used to connect to the Ring Account.
      */
@@ -54,8 +56,11 @@ public class RingVideoServlet extends HttpServlet {
 
     }
 
-    public RingVideoServlet(HttpService httpService, Profile profile) {
-        this.profile = profile;
+    public RingVideoServlet(HttpService httpService, String videoStoragePath) {
+        Path path = Paths.get(videoStoragePath);
+        FileSystem fs = path.getFileSystem();
+        String sep = fs.getSeparator();
+        this.videoStoragePath = videoStoragePath + (videoStoragePath.endsWith(sep) ? "" : sep);
         restClient = new RestClient();
         try {
             httpService.registerServlet(SERVLET_VIDEO_PATH, this, null, httpService.createDefaultHttpContext());
@@ -66,10 +71,9 @@ public class RingVideoServlet extends HttpServlet {
 
     @SuppressWarnings("null")
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-        InputStream reader = null;
-        OutputStream writer = null;
         try {
             String ipAddress = request.getHeader("HTTP_X_FORWARDED_FOR");
             if (ipAddress == null) {
@@ -87,35 +91,31 @@ public class RingVideoServlet extends HttpServlet {
             }
 
             String uri = request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/") + 1);
-            String videoUrl = restClient.getRecordingURL(uri, profile);
-            logger.debug("RingVideo: {} image '{}' from '{}'", request.getMethod(), uri, videoUrl);
-            resp.setContentType(SERVLET_VIDEO_MIME_TYPE);
-            resp.setHeader("Access-Control-Allow-Origin", "*");
 
-            URL url = new URL(videoUrl);
-            URLConnection conn = url.openConnection();
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-            reader = conn.getInputStream();
-            writer = resp.getOutputStream();
+            logger.debug("RingVideo: {} video '{}' requested", request.getMethod(), uri);
 
-            // read data in 4k chunks
-            byte[] data = new byte[4096];
-            int n;
-            while (((n = reader.read(data)) != -1)) {
-                writer.write(data, 0, n);
+            String FILE_NAME = videoStoragePath + uri;
+            File toBeCopied = new File(FILE_NAME);
+            String mimeType = URLConnection.guessContentTypeFromName(toBeCopied.getName());
+            String contentDisposition = String.format("attachment; filename=%s", toBeCopied.getName());
+            int fileSize = Long.valueOf(toBeCopied.length()).intValue();
+            response.setHeader("Content-Disposition", contentDisposition);
+            response.setContentLength(fileSize);
+            response.setContentType(mimeType);
+
+            response.setHeader("Access-Control-Allow-Origin", "*");
+
+            try (OutputStream out = response.getOutputStream()) {
+                Path videoPath = toBeCopied.toPath();
+                Files.copy(videoPath, out);
+                out.flush();
+            } catch (IOException e) {
+                // handle exception
+                logger.error("RingVideo: Unable to process request: {}", e.getMessage());
             }
 
         } catch (Exception e) {
             logger.error("RingVideo: Unable to process request: {}", e.getMessage());
-        } finally {
-            if (writer != null) {
-                writer.flush();
-                writer.close();
-            }
-            if (reader != null) {
-                reader.close();
-            }
         }
     }
 }

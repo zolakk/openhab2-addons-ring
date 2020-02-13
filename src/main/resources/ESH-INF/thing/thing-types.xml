@@ -43,7 +43,15 @@
 				<description>How often to poll the Ring service for events in seconds</description>
 				<default>5</default>
 			</parameter>
-			
+			<parameter name="videoStoragePath" type="text">
+				<label>MP4 video download path</label>
+				<description>The folder path to save video .mp4 files in when downloaded from ring.com. Note: the openhab user must have rights to save to this location</description>
+				<default>/etc/openhab2/html/ring/video</default></parameter>
+			<parameter name="videoRetentionCount" type="integer">
+				<label>The number of video files to keep</label>
+				<description>The number of video files to keep when automatically downloading the latest event video, or 0 to disable auto downloading</description>
+				<default>10</default></parameter>
+
 		</config-description>
 	</thing-type>
 	<!-- Ring Chime Thing Type -->
@@ -117,7 +125,6 @@
 		<label>Control</label>
 		<description>Operational control and status information</description>
 		<channels>
-			<channel id="status" typeId="status"/>
 			<channel id="enabled" typeId="enabled"/>
 		</channels>
 	</channel-group-type>

@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.smarthome.core.net.HttpServiceUtil;
 import org.eclipse.smarthome.core.net.NetworkAddressService;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
@@ -28,10 +29,10 @@ import org.openhab.binding.ring.handler.AccountHandler;
 import org.openhab.binding.ring.handler.ChimeHandler;
 import org.openhab.binding.ring.handler.DoorbellHandler;
 import org.openhab.binding.ring.handler.StickupcamHandler;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.http.HttpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,9 +54,23 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
     private NetworkAddressService networkAddressService;
 
     @Nullable
-    HttpService httpService;
+    private HttpService httpService;
+    private int httpPort;
+    private ComponentContext componentContext;
 
-    public RingHandlerFactory() {
+    @Activate
+    public RingHandlerFactory(@Reference NetworkAddressService networkAddressService,
+            @Reference HttpService httpService, ComponentContext componentContext) {
+        super.activate(componentContext);
+        httpPort = HttpServiceUtil.getHttpServicePort(componentContext.getBundleContext());
+        if (httpPort == -1) {
+            httpPort = 8080;
+        }
+        this.httpService = httpService;
+        this.networkAddressService = networkAddressService;
+
+        logger.debug("Using OH HTTP port {}", httpPort);
+
         SUPPORTED_THING_TYPES_UIDS = new HashSet<>();
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_ACCOUNT);
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_DOORBELL);
@@ -74,7 +89,7 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
         logger.info("createHandler thingType: {}", thingTypeUID);
         if (thingTypeUID.equals(THING_TYPE_ACCOUNT)) {
-            return new AccountHandler(thing, networkAddressService, httpService);
+            return new AccountHandler(thing, networkAddressService, httpService, httpPort);
         } else if (thingTypeUID.equals(THING_TYPE_DOORBELL)) {
             return new DoorbellHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_CHIME)) {
@@ -84,22 +99,32 @@ public class RingHandlerFactory extends BaseThingHandlerFactory {
         }
         return null;
     }
-
-    @Reference(cardinality = ReferenceCardinality.MANDATORY, policy = ReferencePolicy.DYNAMIC)
-    protected void setHttpService(HttpService httpService) {
-        this.httpService = httpService;
-    }
-
-    protected void unsetHttpService(HttpService httpService) {
-        this.httpService = null;
-    }
-
-    @Reference
-    protected void setNetworkAddressService(NetworkAddressService networkAddressService) {
-        this.networkAddressService = networkAddressService;
-    }
-
-    protected void unsetNetworkAddressService(NetworkAddressService networkAddressService) {
-        this.networkAddressService = null;
-    }
+    /*
+     * @Reference(cardinality = ReferenceCardinality.MANDATORY, policy = ReferencePolicy.DYNAMIC)
+     * protected void setHttpService(HttpService httpService) {
+     * this.httpService = httpService;
+     * }
+     *
+     * protected void unsetHttpService(HttpService httpService) {
+     * this.httpService = null;
+     * }
+     *
+     * @Reference
+     * protected void setComponentContext(ComponentContext componentContext) {
+     * this.componentContext = componentContext;
+     * }
+     *
+     * protected void unsetComponentContext(ComponentContext componentContext) {
+     * this.componentContext = null;
+     * }
+     *
+     * @Reference
+     * protected void setNetworkAddressService(NetworkAddressService networkAddressService) {
+     * this.networkAddressService = networkAddressService;
+     * }
+     *
+     * protected void unsetNetworkAddressService(NetworkAddressService networkAddressService) {
+     * this.networkAddressService = null;
+     * }
+     */
 }

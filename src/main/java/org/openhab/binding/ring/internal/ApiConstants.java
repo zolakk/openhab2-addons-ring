@@ -29,8 +29,8 @@ public class ApiConstants {
     public static final String URL_HISTORY = API_BASE + "/clients_api/doorbots/history";
     public static final String URL_RECORDING_START = API_BASE + "/clients_api/dings/";
     public static final String URL_RECORDING_END = "/share/play?disable_redirect=true";
-    public static final String URL_DOORBELLS = API_BASE + "/clients_api/doorbots/";
-    public static final String URL_CHIMES = API_BASE + "/clients_api/chimes/";
+    public static final String URL_DOORBELLS = API_BASE + "/clients_api/doorbots";
+    public static final String URL_CHIMES = API_BASE + "/clients_api/chimes";
 
     public static final String HEALTH_DOORBELL_ENDPOINT = URL_DOORBELLS + "/health";
     public static final String HEALTH_CHIMES_ENDPOINT = URL_CHIMES + "/health";

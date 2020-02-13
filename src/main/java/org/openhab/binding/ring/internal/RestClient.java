@@ -14,6 +14,7 @@ package org.openhab.binding.ring.internal;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,6 +22,11 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
@@ -632,6 +638,79 @@ public class RestClient {
             return null;
         } catch (ParseException e) {
             logger.error("Parse exception in getRecordingURL!", e);
+            return null;
+        }
+    }
+
+    public String downloadEventVideo(RingEvent event, Profile profile, String filePath, int retentionCount) {
+        try {
+            Path path = Paths.get(filePath);
+
+            try {
+                Files.createDirectories(path.toAbsolutePath());
+            } catch (IOException e) {
+                logger.error("RingVideo: Unable to create folder {}, cannot download.: {}", filePath, e.getMessage());
+                return null;
+            }
+            if (retentionCount > 0 && Files.exists(path)) {
+                // get FileSystem object
+                FileSystem fs = path.getFileSystem();
+                String sep = fs.getSeparator();
+                String FILE_NAME = event.getDoorbot().getDescription().replace(" ", "") + "-" + event.getKind() + "-"
+                        + event.getCreatedAt().replace(":", "-") + ".mp4";
+                String FULL_FILE_PATH = filePath + (filePath.endsWith(sep) ? "" : sep) + FILE_NAME;
+                path = Paths.get(FULL_FILE_PATH);
+
+                if (Files.notExists(path)) {
+                    String eventId = event.getEventId();
+                    StringBuilder vidUrl = new StringBuilder();
+                    vidUrl.append(ApiConstants.URL_RECORDING_START).append(eventId)
+                            .append(ApiConstants.URL_RECORDING_END);
+
+                    String jsonResult = getRequest(vidUrl.toString(), profile);
+                    JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
+
+                    for (int i = 0; i < 10; i++) {
+                        try {
+                            InputStream in = new URL(obj.get("url").toString()).openStream();
+                            Files.copy(in, Paths.get(FULL_FILE_PATH), StandardCopyOption.REPLACE_EXISTING);
+                            in.close();
+                            if (FULL_FILE_PATH.length() > 0) {
+                                break;
+                            }
+                        } catch (Exception e) {
+                            logger.debug("RingVideo: Error downloading file: {}", e.getMessage());
+                        } finally {
+                            Thread.sleep(15000);
+                        }
+                    }
+                }
+                // 2020-02-10T20:54:09.000Z
+                File directory = new File(filePath);
+                File[] logFiles = directory.listFiles();
+                long oldestDate = Long.MAX_VALUE;
+                File oldestFile = null;
+                if (logFiles != null && logFiles.length > retentionCount) {
+                    // delete oldest files after there's more than the specified number of files
+                    for (File f : logFiles) {
+                        if (f.lastModified() < oldestDate) {
+                            oldestDate = f.lastModified();
+                            oldestFile = f;
+                        }
+                    }
+
+                    if (oldestFile != null) {
+                        oldestFile.delete();
+                    }
+                }
+                return FILE_NAME;
+            } else if (retentionCount == 0) {
+                return "videoRetentionCount = 0, Auto downloading disabled";
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            logger.error("RingVideo: Unable to process request: {}", e.getMessage());
             return null;
         }
     }

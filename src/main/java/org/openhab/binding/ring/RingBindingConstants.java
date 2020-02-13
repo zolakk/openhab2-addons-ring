@@ -47,5 +47,4 @@ public class RingBindingConstants {
     public static final String HTTP_METHOD_POST = "POST";
     public static final String HTTP_METHOD_DELETE = "DELETE";
     public static final String SERVLET_VIDEO_PATH = "/ring/video";
-    public static final String SERVLET_VIDEO_MIME_TYPE = "video/mp4";
 }
