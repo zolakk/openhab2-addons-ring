@@ -242,7 +242,9 @@ public class RestClient {
             }
             conn.disconnect();
             result = output.toString();
-            logger.trace("RestApi getRequest response: {}.", result);
+            if (!result.startsWith("[{\"id\"")) { // Ignore ding results
+                logger.trace("RestApi getRequest response: {}.", result);
+            }
         } catch (IOException | KeyManagementException | NoSuchAlgorithmException ex) {
             logger.error("RestApi error in getRequest!", ex);
             // ex.printStackTrace();
@@ -660,23 +662,24 @@ public class RestClient {
                         + event.getCreatedAt().replace(":", "-") + ".mp4";
                 String FULL_FILE_PATH = filePath + (filePath.endsWith(sep) ? "" : sep) + FILE_NAME;
                 path = Paths.get(FULL_FILE_PATH);
-
+                boolean urlFound = false;
                 if (Files.notExists(path)) {
                     String eventId = event.getEventId();
                     StringBuilder vidUrl = new StringBuilder();
                     vidUrl.append(ApiConstants.URL_RECORDING_START).append(eventId)
                             .append(ApiConstants.URL_RECORDING_END);
-
-                    String jsonResult = getRequest(vidUrl.toString(), profile);
-                    JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
-
                     for (int i = 0; i < 10; i++) {
                         try {
-                            InputStream in = new URL(obj.get("url").toString()).openStream();
-                            Files.copy(in, Paths.get(FULL_FILE_PATH), StandardCopyOption.REPLACE_EXISTING);
-                            in.close();
-                            if (FULL_FILE_PATH.length() > 0) {
-                                break;
+                            String jsonResult = getRequest(vidUrl.toString(), profile);
+                            JSONObject obj = (JSONObject) new JSONParser().parse(jsonResult);
+                            if (obj.get("url").toString().startsWith("http")) {
+                                InputStream in = new URL(obj.get("url").toString()).openStream();
+                                Files.copy(in, Paths.get(FULL_FILE_PATH), StandardCopyOption.REPLACE_EXISTING);
+                                in.close();
+                                if (FULL_FILE_PATH.length() > 0) {
+                                    urlFound = true;
+                                    break;
+                                }
                             }
                         } catch (Exception e) {
                             logger.debug("RingVideo: Error downloading file: {}", e.getMessage());
@@ -685,25 +688,29 @@ public class RestClient {
                         }
                     }
                 }
-                // 2020-02-10T20:54:09.000Z
-                File directory = new File(filePath);
-                File[] logFiles = directory.listFiles();
-                long oldestDate = Long.MAX_VALUE;
-                File oldestFile = null;
-                if (logFiles != null && logFiles.length > retentionCount) {
-                    // delete oldest files after there's more than the specified number of files
-                    for (File f : logFiles) {
-                        if (f.lastModified() < oldestDate) {
-                            oldestDate = f.lastModified();
-                            oldestFile = f;
+                if (urlFound) {
+                    // 2020-02-10T20:54:09.000Z
+                    File directory = new File(filePath);
+                    File[] logFiles = directory.listFiles();
+                    long oldestDate = Long.MAX_VALUE;
+                    File oldestFile = null;
+                    if (logFiles != null && logFiles.length > retentionCount) {
+                        // delete oldest files after there's more than the specified number of files
+                        for (File f : logFiles) {
+                            if (f.lastModified() < oldestDate) {
+                                oldestDate = f.lastModified();
+                                oldestFile = f;
+                            }
+                        }
+
+                        if (oldestFile != null) {
+                            oldestFile.delete();
                         }
                     }
-
-                    if (oldestFile != null) {
-                        oldestFile.delete();
-                    }
+                    return FILE_NAME;
+                } else {
+                    return "Video not available on ring.com";
                 }
-                return FILE_NAME;
             } else if (retentionCount == 0) {
                 return "videoRetentionCount = 0, Auto downloading disabled";
             } else {
