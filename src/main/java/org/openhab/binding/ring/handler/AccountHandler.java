@@ -241,6 +241,21 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
                         userProfile.getRefreshToken());
             }
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
+            config.remove("twofactorCode");
+            updateConfiguration(config);
+
+            if (this.ringVideoServlet == null) {
+                this.ringVideoServlet = new RingVideoServlet(httpService, videoStoragePath);
+            }
+
+            // Note: When initialization can NOT be done set the status with more details for further
+            // analysis. See also class ThingStatusDetail for all available status details.
+            // Add a description to give user information to understand why thing does not work
+            // as expected. E.g.
+            // updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
+            // "Can not access device as username and/or password are invalid");
+            startAutomaticRefresh(refreshInterval);
+            startSessionRefresh(600);
         } catch (AuthenticationException ex) {
             logger.debug("AuthenticationException when initializing Ring Account handler{}", ex.getMessage());
             if (ex.getMessage().startsWith("Two factor")) {
@@ -257,21 +272,6 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
                     "Initialization failed: " + e.getMessage());
         }
-        config.remove("twofactorCode");
-        updateConfiguration(config);
-
-        if (this.ringVideoServlet == null) {
-            this.ringVideoServlet = new RingVideoServlet(httpService, videoStoragePath);
-        }
-
-        // Note: When initialization can NOT be done set the status with more details for further
-        // analysis. See also class ThingStatusDetail for all available status details.
-        // Add a description to give user information to understand why thing does not work
-        // as expected. E.g.
-        // updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
-        // "Can not access device as username and/or password are invalid");
-        startAutomaticRefresh(refreshInterval);
-        startSessionRefresh(1200);
     }
 
     private void refreshRegistry() throws ParseException, AuthenticationException, DuplicateIdException {
@@ -282,83 +282,79 @@ public class AccountHandler extends AbstractRingHandler implements RingAccount {
 
     @Override
     protected void minuteTick() {
-        if (registry == null) {
-            try {
-                // Init the devices
-                refreshRegistry();
-                updateStatus(ThingStatus.ONLINE);
-            } catch (AuthenticationException | ParseException e) {
-                logger.debug(
-                        "AuthenticationException in AccountHandler.minuteTick() when trying refreshRegistry, attempting to reconnect {}",
-                        e.getMessage());
-                Configuration config = getThing().getConfiguration();
-                String username = (String) config.get("username");
-                String password = (String) config.get("password");
-                String hardwareId = (String) config.get("hardwareId");
-                String refreshToken = (String) config.get("refreshToken");
+        // if (registry == null) {
+        try {
+            // Init the devices
+            refreshRegistry();
+            updateStatus(ThingStatus.ONLINE);
+        } catch (AuthenticationException | ParseException e) {
+            logger.debug(
+                    "AuthenticationException in AccountHandler.minuteTick() when trying refreshRegistry, attempting to reconnect {}",
+                    e.getMessage());
+            Configuration config = getThing().getConfiguration();
+            String username = (String) config.get("username");
+            String password = (String) config.get("password");
+            String hardwareId = (String) config.get("hardwareId");
+            String refreshToken = (String) config.get("refreshToken");
 
-                try {
-                    userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, null,
-                            hardwareId);
-                    updateStatus(ThingStatus.ONLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
-                } catch (AuthenticationException ex) {
-                    logger.debug("RestClient reported AuthenticationException trying getAuthenticatedProfile: {}",
-                            ex.getMessage());
-                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials");
-                } catch (ParseException e1) {
-                    logger.debug("RestClient reported ParseException trying getAuthenticatedProfile: {}",
-                            e1.getMessage());
-                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                            "Invalid response from api.ring.com");
-                } finally {
-                    try {
-                        refreshRegistry();
-                        updateStatus(ThingStatus.ONLINE);
-                    } catch (DuplicateIdException ignored) {
-                        updateStatus(ThingStatus.ONLINE);
-                    } catch (AuthenticationException ae) {
-                        registry = null;
-                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                                "AuthenticationException response from ring.com");
-                        logger.debug("RestClient reported AuthenticationException in finally block: {}",
-                                ae.getMessage());
-                    } catch (ParseException pe1) {
-                        registry = null;
-                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                                "ParseException response from ring.com");
-                        logger.debug("RestClient reported ParseException in finally block: {}", pe1.getMessage());
-                    }
-                }
-            } catch (DuplicateIdException ignored) {
-                updateStatus(ThingStatus.ONLINE);
-            }
-        } else {
-            // Update the events
             try {
-                String id = lastEvents == null || lastEvents.isEmpty() ? "?" : lastEvents.get(0).getEventId();
-                lastEvents = restClient.getHistory(userProfile, 1);
-                if (lastEvents != null && !lastEvents.isEmpty() && !lastEvents.get(0).getEventId().equals(id)) {
-                    handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_URL), RefreshType.REFRESH);
-                    handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_CREATED_AT), RefreshType.REFRESH);
-                    handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_KIND), RefreshType.REFRESH);
-                    handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_DOORBOT_ID), RefreshType.REFRESH);
-                    handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_DOORBOT_DESCRIPTION),
-                            RefreshType.REFRESH);
-                }
+                userProfile = restClient.getAuthenticatedProfile(username, password, refreshToken, null, hardwareId);
+                updateStatus(ThingStatus.ONLINE, ThingStatusDetail.CONFIGURATION_PENDING, "Retrieving device list");
             } catch (AuthenticationException ex) {
-                registry = null;
-                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
-                        "AuthenticationException response from ring.com");
-                logger.debug(
-                        "RestClient reported AuthenticationExceptionfrom api.ring.com when retrying refreshRegistry for the second time: {}",
+                logger.debug("RestClient reported AuthenticationException trying getAuthenticatedProfile: {}",
                         ex.getMessage());
-            } catch (ParseException ignored) {
-                logger.debug(
-                        "RestClient reported ParseException api.ring.com when retrying refreshRegistry for the second time: {}",
-                        ignored.getMessage());
-
+                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Invalid credentials");
+            } catch (ParseException e1) {
+                logger.debug("RestClient reported ParseException trying getAuthenticatedProfile: {}", e1.getMessage());
+                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                        "Invalid response from api.ring.com");
+            } finally {
+                try {
+                    refreshRegistry();
+                    updateStatus(ThingStatus.ONLINE);
+                } catch (DuplicateIdException ignored) {
+                    updateStatus(ThingStatus.ONLINE);
+                } catch (AuthenticationException ae) {
+                    registry = null;
+                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                            "AuthenticationException response from ring.com");
+                    logger.debug("RestClient reported AuthenticationException in finally block: {}", ae.getMessage());
+                } catch (ParseException pe1) {
+                    registry = null;
+                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                            "ParseException response from ring.com");
+                    logger.debug("RestClient reported ParseException in finally block: {}", pe1.getMessage());
+                }
             }
+        } catch (DuplicateIdException ignored) {
+            updateStatus(ThingStatus.ONLINE);
         }
+        // } else {
+        // Update the events
+        try {
+            String id = lastEvents == null || lastEvents.isEmpty() ? "?" : lastEvents.get(0).getEventId();
+            lastEvents = restClient.getHistory(userProfile, 1);
+            if (lastEvents != null && !lastEvents.isEmpty() && !lastEvents.get(0).getEventId().equals(id)) {
+                handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_URL), RefreshType.REFRESH);
+                handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_CREATED_AT), RefreshType.REFRESH);
+                handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_KIND), RefreshType.REFRESH);
+                handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_DOORBOT_ID), RefreshType.REFRESH);
+                handleCommand(new ChannelUID(thing.getUID(), CHANNEL_EVENT_DOORBOT_DESCRIPTION), RefreshType.REFRESH);
+            }
+        } catch (AuthenticationException ex) {
+            // registry = null;
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                    "AuthenticationException response from ring.com");
+            logger.debug(
+                    "RestClient reported AuthenticationExceptionfrom api.ring.com when retrying refreshRegistry for the second time: {}",
+                    ex.getMessage());
+        } catch (ParseException ignored) {
+            logger.debug(
+                    "RestClient reported ParseException api.ring.com when retrying refreshRegistry for the second time: {}",
+                    ignored.getMessage());
+
+        }
+        // }
     }
 
     /**

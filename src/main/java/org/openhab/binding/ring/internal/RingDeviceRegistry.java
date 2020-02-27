@@ -79,6 +79,7 @@ public class RingDeviceRegistry {
             logger.debug("Ignoring null ringDevice");
         } else {
             if (devices.containsKey(ringDevice.getId())) {
+                // logger.trace("Ring device with duplicate id " + ringDevice.getId() + " ignored");
                 throw new DuplicateIdException("Ring device with duplicate id " + ringDevice.getId() + " ignored");
             } else {
                 ringDevice.setRegistrationStatus(Status.ADDED);
