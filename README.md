@@ -1,3 +1,5 @@
+## Note: Due to the Coronavirus pandemic, development of this binding has been put on hold for the forseeable future. Pull requests are welcomed, however.
+
 # <bindingName> Ring
 
 This is an experimental binding to the Ring.com API. It currently supports a Ring account
