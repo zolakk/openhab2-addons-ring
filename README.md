@@ -1,4 +1,4 @@
-## Note: Due to the Coronavirus pandemic, development of this binding has been put on hold for the forseeable future. Pull requests are welcomed, however.
+## Note: Development of this binding has been put on hold for the forseeable future. Pull requests are welcomed, however.
 
 # <bindingName> Ring
 
